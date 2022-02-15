@@ -2,8 +2,6 @@
 
 namespace Stephenjude\FilamentBlog\Resources;
 
-use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
-use Stephenjude\FilamentBlog\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Resources\Form;
@@ -13,8 +11,10 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-
 use function now;
+use Stephenjude\FilamentBlog\Models\Post;
+
+use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
 
 class PostResource extends Resource
 {

@@ -2,8 +2,8 @@
 
 namespace Stephenjude\FilamentBlog\Resources\PostResource\Pages;
 
-use Stephenjude\FilamentBlog\Resources\PostResource;
 use Filament\Resources\Pages\EditRecord;
+use Stephenjude\FilamentBlog\Resources\PostResource;
 
 class EditPost extends EditRecord
 {

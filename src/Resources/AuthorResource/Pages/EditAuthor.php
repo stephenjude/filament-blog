@@ -2,8 +2,8 @@
 
 namespace Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
 
-use Stephenjude\FilamentBlog\Resources\AuthorResource;
 use Filament\Resources\Pages\EditRecord;
+use Stephenjude\FilamentBlog\Resources\AuthorResource;
 
 class EditAuthor extends EditRecord
 {
