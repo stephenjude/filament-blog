@@ -18,6 +18,7 @@
     "require": {
         "php": "^8.0",
         "spatie/laravel-package-tools": "^1.9.2",
+        "filament/filament": "^2.0",
         "illuminate/contracts": "^8.73"
     },
     "require-dev": {
@@ -30,13 +31,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Stephenjude\\FilamentBlog\\": "src",
+            "Stephenjude\\Blog\\": "src",
             "Stephenjude\\FilamentBlog\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Stephenjude\\FilamentBlog\\Tests\\": "tests"
+            "Stephenjude\\Blog\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -53,10 +54,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Stephenjude\\FilamentBlog\\FilamentBlogServiceProvider"
+                "BlogServiceProvider"
             ],
             "aliases": {
-                "FilamentBlog": "Stephenjude\\FilamentBlog\\Facades\\FilamentBlog"
+                "Blog": "Stephenjude\\FilamentBlog\\Facades\\Blog"
             }
         }
     },

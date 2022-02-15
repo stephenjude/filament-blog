@@ -4,7 +4,7 @@ namespace Stephenjude\FilamentBlog\Commands;
 
 use Illuminate\Console\Command;
 
-class FilamentBlogCommand extends Command
+class BlogCommand extends Command
 {
     public $signature = 'filament-blog';
 
