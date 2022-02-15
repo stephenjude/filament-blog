@@ -21,10 +21,6 @@ class BlogServiceProvider extends PluginServiceProvider
         $package
             ->name('filament-blog')
             ->hasConfigFile()
-            ->hasMigrations([
-                'create_blog_authors_table',
-                'create_blog_categories_table',
-                'create_blog_posts_table',
-            ]);
+            ->hasMigration('create_filament_blog_tables');
     }
 }
