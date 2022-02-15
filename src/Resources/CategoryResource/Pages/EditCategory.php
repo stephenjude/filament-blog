@@ -2,8 +2,8 @@
 
 namespace Stephenjude\FilamentBlog\Resources\CategoryResource\Pages;
 
-use Stephenjude\FilamentBlog\Resources\CategoryResource;
 use Filament\Resources\Pages\EditRecord;
+use Stephenjude\FilamentBlog\Resources\CategoryResource;
 
 class EditCategory extends EditRecord
 {

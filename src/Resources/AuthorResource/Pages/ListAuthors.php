@@ -2,8 +2,8 @@
 
 namespace Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
 
-use Stephenjude\FilamentBlog\Resources\AuthorResource;
 use Filament\Resources\Pages\ListRecords;
+use Stephenjude\FilamentBlog\Resources\AuthorResource;
 
 class ListAuthors extends ListRecords
 {

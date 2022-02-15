@@ -2,13 +2,13 @@
 
 namespace Stephenjude\FilamentBlog\Resources;
 
-use Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
-use Stephenjude\FilamentBlog\Models\Author;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Stephenjude\FilamentBlog\Models\Author;
+use Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
 
 class AuthorResource extends Resource
 {

@@ -2,8 +2,8 @@
 
 namespace Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
 
-use Stephenjude\FilamentBlog\Resources\AuthorResource;
 use Filament\Resources\Pages\CreateRecord;
+use Stephenjude\FilamentBlog\Resources\AuthorResource;
 
 class CreateAuthor extends CreateRecord
 {

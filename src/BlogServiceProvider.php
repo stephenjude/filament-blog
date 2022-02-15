@@ -2,11 +2,11 @@
 
 namespace Stephenjude\FilamentBlog;
 
+use Filament\PluginServiceProvider;
+use Spatie\LaravelPackageTools\Package;
 use Stephenjude\FilamentBlog\Resources\AuthorResource;
 use Stephenjude\FilamentBlog\Resources\CategoryResource;
 use Stephenjude\FilamentBlog\Resources\PostResource;
-use Filament\PluginServiceProvider;
-use Spatie\LaravelPackageTools\Package;
 
 class BlogServiceProvider extends PluginServiceProvider
 {
@@ -24,7 +24,7 @@ class BlogServiceProvider extends PluginServiceProvider
             ->hasMigrations([
                 'create_blog_authors_table',
                 'create_blog_categories_table',
-                'create_blog_posts_table'
+                'create_blog_posts_table',
             ]);
     }
 }

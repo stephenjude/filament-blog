@@ -2,14 +2,14 @@
 
 namespace Stephenjude\FilamentBlog\Resources;
 
-use Stephenjude\FilamentBlog\Resources\CategoryResource\Pages;
-use Stephenjude\FilamentBlog\Models\Category;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Support\Str;
+use Stephenjude\FilamentBlog\Models\Category;
+use Stephenjude\FilamentBlog\Resources\CategoryResource\Pages;
 
 class CategoryResource extends Resource
 {
