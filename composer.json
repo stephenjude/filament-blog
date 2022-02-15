@@ -4,7 +4,8 @@
     "keywords": [
         "stephenjude",
         "laravel",
-        "filament-blog"
+        "filament-blog",
+        "blog"
     ],
     "homepage": "https://github.com/stephenjude/filament-blog",
     "license": "MIT",
@@ -31,7 +32,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Stephenjude\\Blog\\": "src",
+            "Stephenjude\\FilamentBlog\\": "src",
             "Stephenjude\\FilamentBlog\\Database\\Factories\\": "database/factories"
         }
     },
@@ -54,11 +55,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BlogServiceProvider"
-            ],
-            "aliases": {
-                "Blog": "Stephenjude\\FilamentBlog\\Facades\\Blog"
-            }
+                "Stephenjude\\FilamentBlog\\BlogServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
