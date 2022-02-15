@@ -21,6 +21,7 @@
         "spatie/laravel-package-tools": "^1.9.2",
         "filament/filament": "^2.0",
         "illuminate/contracts": "^8.73",
+        "filament/spatie-laravel-tags-plugin": "^2.0"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.10",
