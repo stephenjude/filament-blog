@@ -4,6 +4,7 @@ namespace Stephenjude\FilamentBlog;
 
 use Filament\PluginServiceProvider;
 use Spatie\LaravelPackageTools\Package;
+use Stephenjude\FilamentBlog\Commands\InstallCommand;
 use Stephenjude\FilamentBlog\Resources\AuthorResource;
 use Stephenjude\FilamentBlog\Resources\CategoryResource;
 use Stephenjude\FilamentBlog\Resources\PostResource;
@@ -21,6 +22,7 @@ class BlogServiceProvider extends PluginServiceProvider
         $package
             ->name('filament-blog')
             ->hasConfigFile()
+            ->hasCommand(InstallCommand::class)
             ->hasMigration('create_filament_blog_tables');
     }
 }

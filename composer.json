@@ -20,7 +20,7 @@
         "php": "^8.0",
         "spatie/laravel-package-tools": "^1.9.2",
         "filament/filament": "^2.0",
-        "illuminate/contracts": "^8.73",
+        "illuminate/contracts": "^9.1.0",
         "filament/spatie-laravel-tags-plugin": "^2.0"
     },
     "require-dev": {
