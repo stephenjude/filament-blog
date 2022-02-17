@@ -1,6 +1,5 @@
 <?php
 
-
 it('can install blog migrations and configurations', function () {
     $this->artisan('filament-blog:install')
         ->expectsOutput('Publishing Blog Configuration...')
