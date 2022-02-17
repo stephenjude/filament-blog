@@ -24,11 +24,11 @@
         "filament/spatie-laravel-tags-plugin": "^2.0"
     },
     "require-dev": {
-        "nunomaduro/collision": "^5.10|^6.1",
-        "orchestra/testbench": "^6.23|^7.0",
+        "nunomaduro/collision": "^6.1",
+        "orchestra/testbench": "^7.0",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.1",
-        "phpunit/phpunit": "^9.0|^9.5"
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
