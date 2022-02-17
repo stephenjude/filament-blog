@@ -17,7 +17,6 @@ use Stephenjude\FilamentBlog\Tests\Models\User;
 
 class TestCase extends Orchestra
 {
-    use RefreshDatabase;
     use WithFaker;
 
     protected function setUp(): void

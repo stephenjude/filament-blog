@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource;
+
+uses(RefreshDatabase::class);
 
 it('can render post list table', function () {
     $this->get(PostResource::getUrl('index'))->assertSuccessful();
