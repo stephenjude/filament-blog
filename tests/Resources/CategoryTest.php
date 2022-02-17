@@ -1,10 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Stephenjude\FilamentBlog\Models\Category;
 use Stephenjude\FilamentBlog\Resources\CategoryResource;
-
-uses(RefreshDatabase::class);
 
 it('can render category list table', function () {
     $this->get(CategoryResource::getUrl('index'))->assertSuccessful();

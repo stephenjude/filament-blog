@@ -1,10 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Stephenjude\FilamentBlog\Models\Author;
 use Stephenjude\FilamentBlog\Resources\AuthorResource;
-
-uses(RefreshDatabase::class);
 
 it('can render author list table', function () {
     $this->get(AuthorResource::getUrl('index'))->assertSuccessful();
