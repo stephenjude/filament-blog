@@ -41,12 +41,7 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
-        $app['config']->set('auth.providers.users.model', User::class);
-        $app['config']->set('view.paths', array_merge(
-            $app['config']->get('view.paths'),
-            [__DIR__ . '/../resources/views'],
-        ));
-
+        config()->set('auth.providers.users.model', User::class);
         config()->set('database.default', 'testing');
         config()->set('app.key', 'base64:EWcFBKBT8lKlGK8nQhTHY+wg19QlfmbhtO9Qnn3NfcA=');
     }
@@ -54,5 +49,6 @@ class TestCase extends Orchestra
     protected function defineDatabaseMigrations()
     {
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->artisan('migrate')->run();
     }
 }

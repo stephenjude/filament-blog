@@ -20,15 +20,15 @@
         "php": "^8.0",
         "spatie/laravel-package-tools": "^1.9.2",
         "filament/filament": "^2.0",
-        "illuminate/contracts": "^9.1.0",
+        "illuminate/contracts": "^8.73|^9.1.0",
         "filament/spatie-laravel-tags-plugin": "^2.0"
     },
     "require-dev": {
-        "nunomaduro/collision": "^6.1",
-        "orchestra/testbench": "^7.0",
+        "nunomaduro/collision": "^5.10|^6.1",
+        "orchestra/testbench": "^|^7.0",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.1",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.0|^9.5"
     },
     "autoload": {
         "psr-4": {
