@@ -46,9 +46,9 @@ jobs:
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Sleep for 30 seconds
-          uses: jakejarvis/wait-action@master
-          with:
-            time: '30s'
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30s'
 
       - name: Execute tests
         run:
