@@ -2,8 +2,8 @@
 
 namespace Stephenjude\FilamentBlog\Tests\Database\Factories;
 
-use Stephenjude\FilamentBlog\Models\Author;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Stephenjude\FilamentBlog\Models\Author;
 
 class AuthorFactory extends Factory
 {

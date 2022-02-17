@@ -45,6 +45,7 @@ class InstallCommand extends Command
         $this->callSilent('vendor:publish', ['--tag' => 'tags-migrations']);
 
         $this->info('Filament blog was installed successfully.');
+
         return 0;
     }
 }
