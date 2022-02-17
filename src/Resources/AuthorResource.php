@@ -7,9 +7,9 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Stephenjude\FilamentBlog\Traits\HasContentEditor;
 use Stephenjude\FilamentBlog\Models\Author;
 use Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
+use Stephenjude\FilamentBlog\Traits\HasContentEditor;
 
 class AuthorResource extends Resource
 {
@@ -38,7 +38,7 @@ class AuthorResource extends Resource
                         Forms\Components\TextInput::make('email')
                             ->required()
                             ->email()
-                            ->unique(Author::class, 'email', fn($record) => $record),
+                            ->unique(Author::class, 'email', fn ($record) => $record),
 
                        self::getContentEditor(),
 
@@ -55,11 +55,13 @@ class AuthorResource extends Resource
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label('Created at')
-                            ->content(fn(?Author $record
+                            ->content(fn (
+                                ?Author $record
                             ): string => $record ? $record->created_at->diffForHumans() : '-'),
                         Forms\Components\Placeholder::make('updated_at')
                             ->label('Last modified at')
-                            ->content(fn(?Author $record
+                            ->content(fn (
+                                ?Author $record
                             ): string => $record ? $record->updated_at->diffForHumans() : '-'),
                     ])
                     ->columnSpan(1),

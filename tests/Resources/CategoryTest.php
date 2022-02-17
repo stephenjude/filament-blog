@@ -13,8 +13,6 @@ it('can render author create form', function () {
 
 it('can render author edit form', function () {
     $this->get(CategoryResource::getUrl('edit', [
-        'record' => Category::factory()->create()
+        'record' => Category::factory()->create(),
     ]))->assertSuccessful();
 });
-
-

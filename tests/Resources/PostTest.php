@@ -13,8 +13,6 @@ it('can render post create form', function () {
 
 it('can render post edit form', function () {
     $this->get(PostResource::getUrl('edit', [
-        'record' => Post::factory()->create()
+        'record' => Post::factory()->create(),
     ]))->assertSuccessful();
 });
-
-

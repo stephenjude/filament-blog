@@ -2,9 +2,9 @@
 
 namespace Stephenjude\FilamentBlog\Tests\Database\Factories;
 
-use Stephenjude\FilamentBlog\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Stephenjude\FilamentBlog\Models\Post;
 
 class PostFactory extends Factory
 {
