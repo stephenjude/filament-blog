@@ -45,11 +45,10 @@ jobs:
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
-      - name: Sleep for 30 seconds
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '30s'
+      - name: Execute tests 1
+        run:
+          vendor/bin/pest
 
-      - name: Execute tests
+      - name: Execute tests 2
         run:
           vendor/bin/pest
