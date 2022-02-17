@@ -1,6 +1,6 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Database\Factories;
+namespace Stephenjude\FilamentBlog\Tests\Database\Factories;
 
 use Stephenjude\FilamentBlog\Models\Author;
 use Illuminate\Database\Eloquent\Factories\Factory;

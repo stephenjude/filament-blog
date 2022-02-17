@@ -37,6 +37,9 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        $this->comment('Publishing Blog Configuration...');
+        $this->callSilent('vendor:publish', ['--tag' => 'filament-blog-config']);
+
         $this->comment('Publishing Filament Blog Migrations...');
         $this->callSilent('vendor:publish', ['--tag' => 'filament-blog-migrations']);
         $this->callSilent('vendor:publish', ['--tag' => 'tags-migrations']);

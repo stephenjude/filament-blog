@@ -24,21 +24,21 @@
         "filament/spatie-laravel-tags-plugin": "^2.0"
     },
     "require-dev": {
-        "nunomaduro/collision": "^5.10",
-        "orchestra/testbench": "^6.22",
+        "nunomaduro/collision": "^6.1",
+        "orchestra/testbench": "^7.0",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.1",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
-            "Stephenjude\\FilamentBlog\\": "src",
-            "Stephenjude\\FilamentBlog\\Database\\Factories\\": "database/factories"
+            "Stephenjude\\FilamentBlog\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Stephenjude\\FilamentBlog\\Tests\\": "tests"
+            "Stephenjude\\FilamentBlog\\Tests\\": "tests",
+            "Stephenjude\\FilamentBlog\\Tests\\Database\\Factories\\": "tests/database/factories"
         }
     },
     "scripts": {

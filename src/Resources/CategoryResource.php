@@ -8,11 +8,14 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Support\Str;
+use Stephenjude\FilamentBlog\Traits\HasContentEditor;
 use Stephenjude\FilamentBlog\Models\Category;
 use Stephenjude\FilamentBlog\Resources\CategoryResource\Pages;
 
 class CategoryResource extends Resource
 {
+    use HasContentEditor;
+
     protected static ?string $model = Category::class;
 
     protected static ?string $slug = 'blog/categories';
@@ -39,10 +42,9 @@ class CategoryResource extends Resource
                             ->disabled()
                             ->required()
                             ->unique(Category::class, 'slug', fn ($record) => $record),
-                        Forms\Components\MarkdownEditor::make('description')
-                            ->columnSpan([
-                                'sm' => 2,
-                            ]),
+
+                        self::getContentEditor(),
+
                         Forms\Components\Toggle::make('is_visible')
                             ->label('Visible to customers.')
                             ->default(true),

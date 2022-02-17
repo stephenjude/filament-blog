@@ -7,11 +7,14 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Stephenjude\FilamentBlog\Traits\HasContentEditor;
 use Stephenjude\FilamentBlog\Models\Author;
 use Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
 
 class AuthorResource extends Resource
 {
+    use HasContentEditor;
+
     protected static ?string $model = Author::class;
 
     protected static ?string $slug = 'blog/authors';
@@ -35,11 +38,10 @@ class AuthorResource extends Resource
                         Forms\Components\TextInput::make('email')
                             ->required()
                             ->email()
-                            ->unique(Author::class, 'email', fn ($record) => $record),
-                        Forms\Components\MarkdownEditor::make('bio')
-                            ->columnSpan([
-                                'sm' => 2,
-                            ]),
+                            ->unique(Author::class, 'email', fn($record) => $record),
+
+                       self::getContentEditor(),
+
                         Forms\Components\TextInput::make('github_handle')
                             ->label('GitHub'),
                         Forms\Components\TextInput::make('twitter_handle')
@@ -53,10 +55,12 @@ class AuthorResource extends Resource
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label('Created at')
-                            ->content(fn (?Author $record): string => $record ? $record->created_at->diffForHumans() : '-'),
+                            ->content(fn(?Author $record
+                            ): string => $record ? $record->created_at->diffForHumans() : '-'),
                         Forms\Components\Placeholder::make('updated_at')
                             ->label('Last modified at')
-                            ->content(fn (?Author $record): string => $record ? $record->updated_at->diffForHumans() : '-'),
+                            ->content(fn(?Author $record
+                            ): string => $record ? $record->updated_at->diffForHumans() : '-'),
                     ])
                     ->columnSpan(1),
             ])
