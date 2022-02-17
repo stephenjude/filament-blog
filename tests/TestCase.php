@@ -50,6 +50,6 @@ class TestCase extends Orchestra
     {
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
 
-        $this->artisan('migrate:fresh')->run();
+        $this->artisan('migrate')->run();
     }
 }
