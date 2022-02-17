@@ -1,8 +1,8 @@
 <?php
 
 
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Stephenjude\FilamentBlog\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
-uses(LazilyRefreshDatabase::class)->in(__DIR__.'/Resources');
+uses(RefreshDatabase::class)->in(__DIR__.'/Resources');
