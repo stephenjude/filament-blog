@@ -45,4 +45,4 @@ jobs:
 
       - name: Execute tests
         run:
-          vendor/bin/pest
+          vendor/bin/testbench package:test
