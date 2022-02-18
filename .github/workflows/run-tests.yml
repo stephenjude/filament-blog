@@ -14,9 +14,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         php: [8.0]
-        laravel: [9.*]
+        laravel: [8.*, 9.*]
         stability: [prefer-stable]
         include:
+          - laravel: 8.*
+            testbench: ^6.23
           - laravel: 9.*
             testbench: ^7.0
 
@@ -45,4 +47,4 @@ jobs:
 
       - name: Execute tests
         run:
-          vendor/bin/testbench package:test
+          vendor/bin/pest
