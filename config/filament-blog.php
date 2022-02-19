@@ -3,7 +3,7 @@
 return [
 
     /**
-     * Available content editors: richtext & markdown.
+     * Supported content editors: richtext & markdown:
      *      \Filament\Forms\Components\RichEditor::class
      *      \Filament\Forms\Components\MarkdownEditor::class
      */
