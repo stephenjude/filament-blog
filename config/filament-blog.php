@@ -27,5 +27,4 @@ return [
         'strike',
         'undo',
     ],
-
 ];

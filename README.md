@@ -5,7 +5,9 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/stephenjude/filament-blog/Check%20&%20fix%20styling?label=code%20style)](https://github.com/stephenjude/filament-blog/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/stephenjude/filament-blog.svg?style=flat-square)](https://packagist.org/packages/stephenjude/filament-blog)
 
-Filament blog builder.
+Filament blog builder that supports both Markdown and Richtext editor
+
+![](./art/screen1.png)
 
 ## Installation
 
@@ -13,20 +15,44 @@ You can install the package via composer:
 
 ```bash
 composer require stephenjude/filament-blog
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-blog-migrations"
+php artisan filament-blog:install
+php artisan storage:link
 php artisan migrate
 ```
 
-## Usage
+This is the contents of the published config file:
 
 ```php
-$filamentBlog = new Stephenjude\FilamentBlog();
-echo $filamentBlog->echoPhrase('Hello, Stephenjude!');
+<?php
+
+return [
+
+    /**
+     * Available content editors: richtext & markdown.
+     *      \Filament\Forms\Components\RichEditor::class
+     *      \Filament\Forms\Components\MarkdownEditor::class
+     */
+    'editor'  => \Filament\Forms\Components\RichEditor::class,
+
+    /**
+     * Buttons for text editor toolbar.
+     */
+    'toolbar_buttons' => [
+        'attachFiles',
+        'blockquote',
+        'bold',
+        'bulletList',
+        'codeBlock',
+        'h2',
+        'h3',
+        'italic',
+        'link',
+        'orderedList',
+        'redo',
+        'strike',
+        'undo',
+    ],
+];
 ```
 
 ## Testing
