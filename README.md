@@ -14,7 +14,7 @@ This package is tailored for [Filament Admin Panel](https://filamentphp.com/).
 
 Make sure you have installed the admin panel before you continue with the installation. You can check the [documentation here](https://filamentphp.com/docs/admin)
 
-## Supported Version
+## Supported Versions
 PHP: `8.0`
 
 Laravel: `8` & `9`
