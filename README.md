@@ -28,7 +28,7 @@ This is the contents of the published config file:
 return [
 
     /**
-     * Available content editors: richtext & markdown.
+     * Supported content editors: richtext & markdown:
      *      \Filament\Forms\Components\RichEditor::class
      *      \Filament\Forms\Components\MarkdownEditor::class
      */
@@ -54,6 +54,14 @@ return [
     ],
 ];
 ```
+
+
+## Displaying your content
+Filment blog builder is faceless, it doesn't have any opinions on how you display your content in your frontend. You can use the blog models in your controllers to display the different resources:
+
+- `Stephenjude\FilamentBlog\Models\Post`
+- `Stephenjude\FilamentBlog\Models\Author`
+- `Stephenjude\FilamentBlog\Models\Category`
 
 ## Testing
 
