@@ -9,8 +9,11 @@ Filament blog builder that supports both Markdown and Richtext editors.
 
 ![](./art/screen1.png)
 
-## Installation
+## Filament Admin Panel
+This package is tailored for [Filament Admin Panel](https://filamentphp.com/). 
 
+Make sure you have installed the admin panel before you continue with the installation. You can check the [documentation here](https://filamentphp.com/docs/admin).
+## Installation
 You can install the package via composer:
 
 ```bash
