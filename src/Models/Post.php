@@ -37,11 +37,13 @@ class Post extends Model
         'published_at' => 'date',
     ];
 
-    public function scopePublished(Builder $query){
+    public function scopePublished(Builder $query)
+    {
         return $query->whereNotNull('published_at');
     }
 
-    public function scopeDraft(Builder $query){
+    public function scopeDraft(Builder $query)
+    {
         return $query->whereNull('published_at');
     }
 

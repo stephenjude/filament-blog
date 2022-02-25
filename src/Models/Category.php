@@ -47,5 +47,4 @@ class Category extends Model
     {
         return $query->whereIsVisible(false);
     }
-
 }
