@@ -96,10 +96,9 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('banner')
+                    ->height(40),
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('slug')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('author.name')
