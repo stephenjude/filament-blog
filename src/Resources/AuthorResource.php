@@ -40,7 +40,7 @@ class AuthorResource extends Resource
                             ->email()
                             ->unique(Author::class, 'email', fn ($record) => $record),
 
-                       self::getContentEditor(),
+                       self::getContentEditor('bio'),
 
                         Forms\Components\TextInput::make('github_handle')
                             ->label('GitHub'),

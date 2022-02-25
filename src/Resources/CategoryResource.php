@@ -43,7 +43,7 @@ class CategoryResource extends Resource
                             ->required()
                             ->unique(Category::class, 'slug', fn ($record) => $record),
 
-                        self::getContentEditor(),
+                        self::getContentEditor('description'),
 
                         Forms\Components\Toggle::make('is_visible')
                             ->label('Visible to guests.')

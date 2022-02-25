@@ -57,7 +57,7 @@ class PostResource extends Resource
                                 'sm' => 2,
                             ]),
 
-                        self::getContentEditor(),
+                        self::getContentEditor('content'),
 
                         Forms\Components\BelongsToSelect::make('blog_author_id')
                             ->relationship('author', 'name')

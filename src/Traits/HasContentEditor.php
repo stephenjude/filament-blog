@@ -4,11 +4,11 @@ namespace Stephenjude\FilamentBlog\Traits;
 
 trait HasContentEditor
 {
-    public static function getContentEditor()
+    public static function getContentEditor(string $field)
     {
         $defaultEditor = config('filament-blog.editor');
 
-        return $defaultEditor::make('content')
+        return $defaultEditor::make($field)
             ->required()
             ->toolbarButtons(config('filament-blog.toolbar_buttons'))
             ->columnSpan([
