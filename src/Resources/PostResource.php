@@ -96,8 +96,6 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('banner')
-                    ->height(50),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
