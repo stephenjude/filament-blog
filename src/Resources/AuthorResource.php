@@ -33,6 +33,8 @@ class AuthorResource extends Resource
             ->schema([
                 Forms\Components\Card::make()
                     ->schema([
+                        Tables\Columns\ImageColumn::make('photo')
+                            ->height(40),
                         Forms\Components\TextInput::make('name')
                             ->required(),
                         Forms\Components\TextInput::make('email')
