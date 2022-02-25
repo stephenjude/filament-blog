@@ -2,6 +2,7 @@
 
 namespace Stephenjude\FilamentBlog\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -35,6 +36,14 @@ class Post extends Model
     protected $casts = [
         'published_at' => 'date',
     ];
+
+    public function scopePublished(Builder $query){
+        return $query->whereNotNull('published_at');
+    }
+
+    public function scopeDraft(Builder $query){
+        return $query->whereNull('published_at');
+    }
 
     public function author(): BelongsTo
     {
