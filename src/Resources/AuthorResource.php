@@ -38,10 +38,14 @@ class AuthorResource extends Resource
                         Forms\Components\TextInput::make('email')
                             ->required()
                             ->email()
-                            ->unique(Author::class, 'email', fn ($record) => $record),
-
-                       self::getContentEditor('bio'),
-
+                            ->unique(Author::class, 'email', fn($record) => $record),
+                        Forms\Components\FileUpload::make('photo')
+                            ->image()
+                            ->maxSize(5120)
+                            ->columnSpan([
+                                'sm' => 2,
+                            ]),
+                        self::getContentEditor('bio'),
                         Forms\Components\TextInput::make('github_handle')
                             ->label('GitHub'),
                         Forms\Components\TextInput::make('twitter_handle')
@@ -55,12 +59,12 @@ class AuthorResource extends Resource
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label('Created at')
-                            ->content(fn (
+                            ->content(fn(
                                 ?Author $record
                             ): string => $record ? $record->created_at->diffForHumans() : '-'),
                         Forms\Components\Placeholder::make('updated_at')
                             ->label('Last modified at')
-                            ->content(fn (
+                            ->content(fn(
                                 ?Author $record
                             ): string => $record ? $record->updated_at->diffForHumans() : '-'),
                     ])

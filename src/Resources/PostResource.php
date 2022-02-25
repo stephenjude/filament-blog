@@ -56,9 +56,7 @@ class PostResource extends Resource
                             ->columnSpan([
                                 'sm' => 2,
                             ]),
-
                         self::getContentEditor('content'),
-
                         Forms\Components\BelongsToSelect::make('blog_author_id')
                             ->relationship('author', 'name')
                             ->searchable()
@@ -98,6 +96,8 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('banner')
+                    ->height(50),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),

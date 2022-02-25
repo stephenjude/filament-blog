@@ -42,9 +42,7 @@ class CategoryResource extends Resource
                             ->disabled()
                             ->required()
                             ->unique(Category::class, 'slug', fn ($record) => $record),
-
                         self::getContentEditor('description'),
-
                         Forms\Components\Toggle::make('is_visible')
                             ->label('Visible to guests.')
                             ->default(true),
