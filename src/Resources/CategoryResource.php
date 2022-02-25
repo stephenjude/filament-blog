@@ -46,7 +46,7 @@ class CategoryResource extends Resource
                         self::getContentEditor(),
 
                         Forms\Components\Toggle::make('is_visible')
-                            ->label('Visible to customers.')
+                            ->label('Visible to guests.')
                             ->default(true),
                     ])
                     ->columns([
