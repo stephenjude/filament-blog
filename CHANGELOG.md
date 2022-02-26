@@ -2,6 +2,13 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 0.1.3 - 2022-02-26
+
+- Added `published()` and `draft()` scopes for post model.
+- Added post banner image and excerpt fields.
+- Added `Isvisible()` and `Invisible()` scopes for post category model.
+- Fixed post category relationship error.
+
 ## 0.1.2 - 2022-02-25
 
 - Added query scopes for published and draft posts.
