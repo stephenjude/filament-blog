@@ -43,12 +43,12 @@ class Post extends Model
      * @var array<string>
      */
     protected $appends = [
-        'banner_image_url',
+        'banner_url',
     ];
 
-    public function bannerImageUrl(): Attribute
+    public function bannerUrl(): Attribute
     {
-        return Attribute::get(fn() => Storage::url($this->banner));
+        return Attribute::get(fn() => asset(Storage::url($this->banner)));
     }
 
     public function scopePublished(Builder $query)
