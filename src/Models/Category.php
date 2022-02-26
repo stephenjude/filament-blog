@@ -35,7 +35,7 @@ class Category extends Model
 
     public function posts(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'blog_category_id', 'id');
     }
 
     public function scopeIsVisible(Builder $query)
