@@ -33,8 +33,6 @@ class AuthorResource extends Resource
             ->schema([
                 Forms\Components\Card::make()
                     ->schema([
-                        Tables\Columns\ImageColumn::make('photo')
-                            ->height(40),
                         Forms\Components\TextInput::make('name')
                             ->required(),
                         Forms\Components\TextInput::make('email')
@@ -44,6 +42,8 @@ class AuthorResource extends Resource
                         Forms\Components\FileUpload::make('photo')
                             ->image()
                             ->maxSize(5120)
+                            ->directory('blog')
+                            ->disk('public')
                             ->columnSpan([
                                 'sm' => 2,
                             ]),
@@ -79,6 +79,8 @@ class AuthorResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('photo')
+                    ->rounded(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),

@@ -49,7 +49,9 @@ class PostResource extends Resource
                             ->required()
                             ->unique(Post::class, 'slug', fn($record) => $record),
 
-                        Forms\Components\TextInput::make('excerpt')
+                        Forms\Components\Textarea::make('excerpt')
+                            ->rows(2)
+                            ->minLength(50)
                             ->maxLength(1000)
                             ->columnSpan([
                                 'sm' => 2,
@@ -59,18 +61,23 @@ class PostResource extends Resource
                             ->image()
                             ->maxSize(5120)
                             ->imageCropAspectRatio('16:9')
+                            ->directory('blog')
                             ->columnSpan([
                                 'sm' => 2,
                             ]),
+
                         self::getContentEditor('content'),
+
                         Forms\Components\BelongsToSelect::make('blog_author_id')
                             ->relationship('author', 'name')
                             ->searchable()
                             ->required(),
+
                         Forms\Components\BelongsToSelect::make('blog_category_id')
                             ->relationship('category', 'name')
                             ->searchable()
                             ->required(),
+
                         Forms\Components\DatePicker::make('published_at')
                             ->label('Published Date'),
                         SpatieTagsInput::make('tags')
@@ -103,7 +110,7 @@ class PostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('banner')
-                    ->height(40),
+                    ->rounded(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),

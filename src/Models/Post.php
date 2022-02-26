@@ -3,9 +3,11 @@
 namespace Stephenjude\FilamentBlog\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Tags\HasTags;
 
 class Post extends Model
@@ -24,10 +26,10 @@ class Post extends Model
     protected $fillable = [
         'title',
         'slug',
+        'excerpt',
+        'banner',
         'content',
         'published_at',
-        'seo_title',
-        'seo_description',
     ];
 
     /**
@@ -36,6 +38,18 @@ class Post extends Model
     protected $casts = [
         'published_at' => 'date',
     ];
+
+    /**
+     * @var array<string>
+     */
+    protected $appends = [
+        'banner_image_url',
+    ];
+
+    public function bannerImageUrl(): Attribute
+    {
+        return Attribute::get(fn() => Storage::url($this->banner));
+    }
 
     public function scopePublished(Builder $query)
     {
