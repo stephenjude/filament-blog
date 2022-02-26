@@ -38,7 +38,7 @@ class Author extends Model
 
     public function photoUrl(): Attribute
     {
-        return Attribute::get(fn() => asset(Storage::url($this->photo)));
+        return Attribute::get(fn () => asset(Storage::url($this->photo)));
     }
 
     public function posts(): HasMany
