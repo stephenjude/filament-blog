@@ -2,6 +2,10 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 0.1.4 - 2022-04-25
+
+- Bump dependabot/fetch-metadata from 1.3.0 to 1.3.1
+
 ## 0.1.3 - 2022-02-26
 
 - Added `published()` and `draft()` scopes for post model.
