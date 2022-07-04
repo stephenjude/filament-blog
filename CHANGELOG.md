@@ -2,6 +2,10 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 0.1.5 - 2022-07-04
+
+- Bump dependabot/fetch-metadata from 1.3.1 to 1.3.3
+
 ## 0.1.4 - 2022-04-25
 
 - Bump dependabot/fetch-metadata from 1.3.0 to 1.3.1
