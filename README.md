@@ -32,6 +32,60 @@ php artisan storage:link
 php artisan migrate
 ```
 
+
+## Displaying your content
+Filment blog builder is faceless, it doesn't have any opinions on how you display your content in your frontend. You can use the blog models in your controllers to display the different resources:
+
+- `Stephenjude\FilamentBlog\Models\Post`
+- `Stephenjude\FilamentBlog\Models\Author`
+- `Stephenjude\FilamentBlog\Models\Category`
+
+### Posts & Drafts
+```php 
+$posts = Post::published()->get();
+
+$drafts = Post::draft()->get();
+
+```
+
+### Post Content
+```php
+$post = Post::find($id);
+
+$post->id;
+$post->title;
+$post->slug;
+$post->excerpt;
+$post->banner_url;
+$post->content;
+$post->published_at;
+```
+
+### Post Category & Author
+```php
+$post = Post::with(['author', 'category'])->find($id);
+
+$author = $post->author;
+
+$author->name;
+$author->email;
+$author->photo;
+$author->bio;
+$author->github_handle;
+$author->twitter_handle;
+
+
+$category = $post->category;
+
+$category->name;
+$category->slug;
+$category->description;
+$category->is_visible;
+$category->seo_title;
+$category->seo_description;
+
+```
+
 ### Configurations
 This is the contents of the published config file:
 
@@ -68,13 +122,6 @@ return [
 ];
 ```
 
-
-## Displaying your content
-Filment blog builder is faceless, it doesn't have any opinions on how you display your content in your frontend. You can use the blog models in your controllers to display the different resources:
-
-- `Stephenjude\FilamentBlog\Models\Post`
-- `Stephenjude\FilamentBlog\Models\Author`
-- `Stephenjude\FilamentBlog\Models\Category`
 
 ## Testing
 
