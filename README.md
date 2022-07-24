@@ -67,6 +67,7 @@ $post = Post::with(['author', 'category'])->find($id);
 
 $author = $post->author;
 
+$author->id;
 $author->name;
 $author->email;
 $author->photo;
@@ -77,6 +78,7 @@ $author->twitter_handle;
 
 $category = $post->category;
 
+$category->id;
 $category->name;
 $category->slug;
 $category->description;
