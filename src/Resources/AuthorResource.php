@@ -118,7 +118,7 @@ class AuthorResource extends Resource
             'edit' => Pages\EditAuthor::route('/{record}/edit'),
         ];
     }
-    
+
     public static function getPluralModelLabel(): string
     {
         return __('filament-blog::filament-blog.authors');
