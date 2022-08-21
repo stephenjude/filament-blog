@@ -2,6 +2,10 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 0.1.6 - 2022-08-21
+
+- Added English translation for hardcoded texts.
+
 ## 0.1.5 - 2022-07-04
 
 - Bump dependabot/fetch-metadata from 1.3.1 to 1.3.3
