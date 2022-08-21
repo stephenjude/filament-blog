@@ -22,6 +22,7 @@ class BlogServiceProvider extends PluginServiceProvider
         $package
             ->name('filament-blog')
             ->hasConfigFile()
+            ->hasTranslations()
             ->hasCommand(InstallCommand::class)
             ->hasMigration('create_filament_blog_tables');
     }

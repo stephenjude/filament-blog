@@ -11,9 +11,7 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-
 use function now;
-
 use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
 
@@ -42,16 +40,19 @@ class PostResource extends Resource
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\TextInput::make('title')
+                            ->label(__('filament-blog::filament-blog.title'))
                             ->required()
                             ->reactive()
                             ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
 
                         Forms\Components\TextInput::make('slug')
+                            ->label(__('filament-blog::filament-blog.slug'))
                             ->disabled()
                             ->required()
                             ->unique(Post::class, 'slug', fn ($record) => $record),
 
                         Forms\Components\Textarea::make('excerpt')
+                            ->label(__('filament-blog::filament-blog.excerpt'))
                             ->rows(2)
                             ->minLength(50)
                             ->maxLength(1000)
@@ -60,6 +61,7 @@ class PostResource extends Resource
                             ]),
 
                         Forms\Components\FileUpload::make('banner')
+                            ->label(__('filament-blog::filament-blog.banner'))
                             ->image()
                             ->maxSize(5120)
                             ->imageCropAspectRatio('16:9')
@@ -71,18 +73,21 @@ class PostResource extends Resource
                         self::getContentEditor('content'),
 
                         Forms\Components\BelongsToSelect::make('blog_author_id')
+                            ->label(__('filament-blog::filament-blog.author'))
                             ->relationship('author', 'name')
                             ->searchable()
                             ->required(),
 
                         Forms\Components\BelongsToSelect::make('blog_category_id')
+                            ->label(__('filament-blog::filament-blog.category'))
                             ->relationship('category', 'name')
                             ->searchable()
                             ->required(),
 
                         Forms\Components\DatePicker::make('published_at')
-                            ->label('Published Date'),
+                            ->label(__('filament-blog::filament-blog.published_date')),
                         SpatieTagsInput::make('tags')
+                            ->label(__('filament-blog::filament-blog.tags'))
                             ->required(),
                     ])
                     ->columns([
@@ -92,12 +97,12 @@ class PostResource extends Resource
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
-                            ->label('Created at')
+                            ->label(__('filament-blog::filament-blog.created_at'))
                             ->content(fn (
                                 ?Post $record
                             ): string => $record ? $record->created_at->diffForHumans() : '-'),
                         Forms\Components\Placeholder::make('updated_at')
-                            ->label('Last modified at')
+                            ->label(__('filament-blog::filament-blog.last_modified_at'))
                             ->content(fn (
                                 ?Post $record
                             ): string => $record ? $record->updated_at->diffForHumans() : '-'),
@@ -112,18 +117,22 @@ class PostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('banner')
+                    ->label(__('filament-blog::filament-blog.banner'))
                     ->rounded(),
                 Tables\Columns\TextColumn::make('title')
+                    ->label(__('filament-blog::filament-blog.title'))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('author.name')
+                    ->label(__('filament-blog::filament-blog.author_name'))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')
+                    ->label(__('filament-blog::filament-blog.category_name'))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('published_at')
-                    ->label('Published Date')
+                    ->label(__('filament-blog::filament-blog.published_at'))
                     ->date(),
             ])
             ->filters([
@@ -187,5 +196,15 @@ class PostResource extends Resource
         }
 
         return $details;
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-blog::filament-blog.posts');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-blog::filament-blog.post');
     }
 }
