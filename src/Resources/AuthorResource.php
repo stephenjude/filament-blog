@@ -34,12 +34,15 @@ class AuthorResource extends Resource
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\TextInput::make('name')
+                            ->label(__('filament-blog::filament-blog.name'))
                             ->required(),
                         Forms\Components\TextInput::make('email')
+                            ->label(__('filament-blog::filament-blog.email'))
                             ->required()
                             ->email()
                             ->unique(Author::class, 'email', fn ($record) => $record),
                         Forms\Components\FileUpload::make('photo')
+                            ->label(__('filament-blog::filament-blog.photo'))
                             ->image()
                             ->maxSize(5120)
                             ->directory('blog')
@@ -49,9 +52,9 @@ class AuthorResource extends Resource
                             ]),
                         self::getContentEditor('bio'),
                         Forms\Components\TextInput::make('github_handle')
-                            ->label('GitHub'),
+                            ->label(__('filament-blog::filament-blog.github')),
                         Forms\Components\TextInput::make('twitter_handle')
-                            ->label('Twitter'),
+                            ->label(__('filament-blog::filament-blog.twitter')),
                     ])
                     ->columns([
                         'sm' => 2,
@@ -60,12 +63,12 @@ class AuthorResource extends Resource
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
-                            ->label('Created at')
+                            ->label(__('filament-blog::filament-blog.created_at'))
                             ->content(fn (
                                 ?Author $record
                             ): string => $record ? $record->created_at->diffForHumans() : '-'),
                         Forms\Components\Placeholder::make('updated_at')
-                            ->label('Last modified at')
+                            ->label(__('filament-blog::filament-blog.last_modified_at'))
                             ->content(fn (
                                 ?Author $record
                             ): string => $record ? $record->updated_at->diffForHumans() : '-'),
@@ -80,17 +83,20 @@ class AuthorResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('photo')
+                    ->label(__('filament-blog::filament-blog.photo'))
                     ->rounded(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label(__('filament-blog::filament-blog.name'))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->label(__('filament-blog::filament-blog.email'))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('github_handle')
-                    ->label('GitHub'),
+                    ->label(__('filament-blog::filament-blog.github')),
                 Tables\Columns\TextColumn::make('twitter_handle')
-                    ->label('Twitter'),
+                    ->label(__('filament-blog::filament-blog.twitter')),
             ])
             ->filters([
                 //
@@ -111,5 +117,15 @@ class AuthorResource extends Resource
             'create' => Pages\CreateAuthor::route('/create'),
             'edit' => Pages\EditAuthor::route('/{record}/edit'),
         ];
+    }
+    
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-blog::filament-blog.authors');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-blog::filament-blog.author');
     }
 }
