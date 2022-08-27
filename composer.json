@@ -1,6 +1,6 @@
 {
-    "name": "stephenjude/filament-blog",
-    "description": "Filament Blog Builder",
+    "name": "chapdel/filament-blog",
+    "description": "Fork of Filament Blog Builder",
     "keywords": [
         "stephenjude",
         "laravel",
@@ -14,6 +14,11 @@
             "name": "stephenjude",
             "email": "stephenjudesuccess@gmail.com",
             "role": "Developer"
+        },
+        {
+            "name": "chapdel",
+            "email": "drop@chapdel.me",
+            "role": "Contributor"
         }
     ],
     "require": {
