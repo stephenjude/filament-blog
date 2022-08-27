@@ -17,6 +17,11 @@ class BlogServiceProvider extends PluginServiceProvider
         PostResource::class,
     ];
 
+    protected function getResources(): array
+    {
+        return $this->resources;
+    }
+
     public function configurePackage(Package $package): void
     {
         $package
