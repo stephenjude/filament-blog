@@ -1,5 +1,12 @@
 <?php
 
+use Stephenjude\FilamentBlog\Models\Author;
+use Stephenjude\FilamentBlog\Models\Category;
+use Stephenjude\FilamentBlog\Models\Post;
+use Stephenjude\FilamentBlog\Resources\AuthorResource;
+use Stephenjude\FilamentBlog\Resources\CategoryResource;
+use Stephenjude\FilamentBlog\Resources\PostResource;
+
 return [
 
     /**
@@ -27,4 +34,12 @@ return [
         'strike',
         'undo',
     ],
+    /**
+     *  Resources
+     */
+    "resources" => [
+        AuthorResource::class,
+        CategoryResource::class,
+        PostResource::class,
+    ]
 ];

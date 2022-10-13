@@ -17,6 +17,11 @@ class BlogServiceProvider extends PluginServiceProvider
         PostResource::class,
     ];
 
+    protected function getResources(): array
+    {
+        return count(config('filament-blog.resources'))>0? config('filament-blog.resources'): $this->resources;
+    }
+
     public function configurePackage(Package $package): void
     {
         $package
