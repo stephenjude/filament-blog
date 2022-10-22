@@ -46,7 +46,6 @@ class AuthorResource extends Resource
                             ->image()
                             ->maxSize(5120)
                             ->directory('blog')
-                            ->disk('public')
                             ->columnSpan([
                                 'sm' => 2,
                             ]),
