@@ -11,11 +11,15 @@ use Stephenjude\FilamentBlog\Resources\PostResource;
 
 class BlogServiceProvider extends PluginServiceProvider
 {
-    protected array $resources = [
-        AuthorResource::class,
-        CategoryResource::class,
-        PostResource::class,
-    ];
+    public function __construct($app, protected array $resources)
+    {
+        parent::__construct($app);
+        $this->resources = config('filametn-blog.resources', [
+            AuthorResource::class,
+            CategoryResource::class,
+            PostResource::class,
+        ]);
+    }
 
     public function configurePackage(Package $package): void
     {
