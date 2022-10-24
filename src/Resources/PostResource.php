@@ -11,13 +11,10 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-
-use function now;
-
 use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
-
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
+use function now;
 
 class PostResource extends Resource
 {
@@ -65,9 +62,10 @@ class PostResource extends Resource
                         Forms\Components\FileUpload::make('banner')
                             ->label(__('filament-blog::filament-blog.banner'))
                             ->image()
-                            ->maxSize(5120)
-                            ->imageCropAspectRatio('16:9')
-                            ->directory('blog')
+                            ->maxSize(config('filament-blog.banner.maxSize', 5120))
+                            ->imageCropAspectRatio(config('filament-blog.banner.cropAspectRatio', '16:9'))
+                            ->disk(config('filament-blog.banner.disk', 'public'))
+                            ->directory(config('filament-blog.banner.directory', 'blog'))
                             ->columnSpan([
                                 'sm' => 2,
                             ]),
