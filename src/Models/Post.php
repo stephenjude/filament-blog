@@ -63,7 +63,7 @@ class Post extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(Author::class, 'blog_author_id');
+        return $this->belongsTo(config('filament-blog.author_model', Author::class), 'blog_author_id');
     }
 
     public function category(): BelongsTo
