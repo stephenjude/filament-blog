@@ -16,9 +16,9 @@ return [
      * and, you want to hide the AuthorResource
      */
     'resources' => [
-        Stephenjude\FilamentBlog\Resources\AuthorResource::class,
-        Stephenjude\FilamentBlog\Resources\CategoryResource::class,
-        Stephenjude\FilamentBlog\Resources\PostResource::class,
+        \Stephenjude\FilamentBlog\Resources\AuthorResource::class,
+        \Stephenjude\FilamentBlog\Resources\CategoryResource::class,
+        \Stephenjude\FilamentBlog\Resources\PostResource::class,
     ],
     /**
      * Supported content editors: richtext & markdown:
