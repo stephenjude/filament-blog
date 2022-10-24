@@ -1,6 +1,6 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Models\Concerns;
+namespace Stephenjude\FilamentBlog\Traits;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Stephenjude\FilamentBlog\Models\Post;
