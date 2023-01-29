@@ -1,12 +1,12 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Support\Facades\Route;
+use Illusive\Blog\Http\Controllers\PostController;
+use Illusive\Blog\Http\Controllers\TagController;
+
+Route::group(['middleware' => config('jetstream.middleware', ['web'])], function () {
+    Route::prefix('blog')->group(function () {
+        Route::resource('post', PostController::class)->parameters(['post' => 'slug']);
+        Route::resource('tag', TagController::class)->parameters(['tag' => 'slug']);
+    });
+});

@@ -11,7 +11,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'filament-blog:install';
+    protected $signature = 'illusive:blog-install';
 
     /**
      * The console command description.
@@ -47,6 +47,11 @@ class InstallCommand extends Command
             '--provider' => "Spatie\MediaLibrary\MediaLibraryServiceProvider",
             '--tag' => 'tags-migrations',
         ]);
+
+        $this->callSilent('vendor:publish', [
+            '--tag' => 'vue-blog-pages',
+        ]);
+
         $this->comment('If you need to rename the migration files do it now');
         $this->info('Filament blog was installed successfully.');
 
