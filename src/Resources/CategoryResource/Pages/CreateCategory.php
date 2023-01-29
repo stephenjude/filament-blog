@@ -1,9 +1,9 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Resources\CategoryResource\Pages;
+namespace Illusive\Blog\Resources\CategoryResource\Pages;
 
 use Filament\Resources\Pages\CreateRecord;
-use Stephenjude\FilamentBlog\Resources\CategoryResource;
+use Illusive\Blog\Resources\CategoryResource;
 
 class CreateCategory extends CreateRecord
 {

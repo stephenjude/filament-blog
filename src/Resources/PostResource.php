@@ -1,23 +1,22 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Resources;
+namespace Illusive\Blog\Resources;
 
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-
+use Illusive\Blog\Models\Post;
+use Illusive\Blog\Resources\PostResource\Pages;
+use Illusive\Blog\Traits\HasContentEditor;
 use function now;
-
-use Stephenjude\FilamentBlog\Models\Post;
-use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
-
-use Stephenjude\FilamentBlog\Traits\HasContentEditor;
 
 class PostResource extends Resource
 {
@@ -47,12 +46,6 @@ class PostResource extends Resource
                             ->reactive()
                             ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
 
-                        Forms\Components\TextInput::make('slug')
-                            ->label(__('filament-blog::filament-blog.slug'))
-                            ->disabled()
-                            ->required()
-                            ->unique(Post::class, 'slug', fn ($record) => $record),
-
                         Forms\Components\Textarea::make('excerpt')
                             ->label(__('filament-blog::filament-blog.excerpt'))
                             ->rows(2)
@@ -62,35 +55,8 @@ class PostResource extends Resource
                                 'sm' => 2,
                             ]),
 
-                        Forms\Components\FileUpload::make('banner')
-                            ->label(__('filament-blog::filament-blog.banner'))
-                            ->image()
-                            ->maxSize(5120)
-                            ->imageCropAspectRatio('16:9')
-                            ->directory('blog')
-                            ->columnSpan([
-                                'sm' => 2,
-                            ]),
-
                         self::getContentEditor('content'),
 
-                        Forms\Components\BelongsToSelect::make('blog_author_id')
-                            ->label(__('filament-blog::filament-blog.author'))
-                            ->relationship('author', 'name')
-                            ->searchable()
-                            ->required(),
-
-                        Forms\Components\BelongsToSelect::make('blog_category_id')
-                            ->label(__('filament-blog::filament-blog.category'))
-                            ->relationship('category', 'name')
-                            ->searchable()
-                            ->required(),
-
-                        Forms\Components\DatePicker::make('published_at')
-                            ->label(__('filament-blog::filament-blog.published_date')),
-                        SpatieTagsInput::make('tags')
-                            ->label(__('filament-blog::filament-blog.tags'))
-                            ->required(),
                     ])
                     ->columns([
                         'sm' => 2,
@@ -98,6 +64,30 @@ class PostResource extends Resource
                     ->columnSpan(2),
                 Forms\Components\Card::make()
                     ->schema([
+                        SpatieMediaLibraryFileUpload::make('banner')->collection('banner'),
+
+                        Forms\Components\TextInput::make('slug')
+                            ->label(__('filament-blog::filament-blog.slug'))
+                            ->disabled()
+                            ->required()
+                            ->unique(Post::class, 'slug', fn ($record) => $record),
+
+                        Forms\Components\BelongsToSelect::make('blog_author_id')
+                            ->label(__('filament-blog::filament-blog.author'))
+                            ->relationship('author', 'name')
+                            ->required(),
+
+                        Forms\Components\BelongsToSelect::make('blog_category_id')
+                            ->label(__('filament-blog::filament-blog.category'))
+                            ->relationship('category', 'name')
+                            ->required(),
+
+                        Forms\Components\DatePicker::make('published_at')
+                            ->label(__('filament-blog::filament-blog.published_date')),
+                        SpatieTagsInput::make('tags')
+                            ->label(__('filament-blog::filament-blog.tags'))
+                            ->required(),
+
                         Forms\Components\Placeholder::make('created_at')
                             ->label(__('filament-blog::filament-blog.created_at'))
                             ->content(fn (
@@ -118,9 +108,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('banner')
-                    ->label(__('filament-blog::filament-blog.banner'))
-                    ->rounded(),
+                SpatieMediaLibraryImageColumn::make('banner')->collection('banner'),
                 Tables\Columns\TextColumn::make('title')
                     ->label(__('filament-blog::filament-blog.title'))
                     ->searchable()

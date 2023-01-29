@@ -1,7 +1,7 @@
 <?php
 
-use Stephenjude\FilamentBlog\Models\Post;
-use Stephenjude\FilamentBlog\Resources\PostResource;
+use Illusive\Blog\Models\Post;
+use Illusive\Blog\Resources\PostResource;
 
 it('can render post list table', function () {
     $this->get(PostResource::getUrl('index'))->assertSuccessful();

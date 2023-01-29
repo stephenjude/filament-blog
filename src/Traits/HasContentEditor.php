@@ -1,6 +1,6 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Traits;
+namespace Illusive\Blog\Traits;
 
 trait HasContentEditor
 {

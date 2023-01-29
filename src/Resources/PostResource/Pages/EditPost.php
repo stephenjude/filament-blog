@@ -1,9 +1,9 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Resources\PostResource\Pages;
+namespace Illusive\Blog\Resources\PostResource\Pages;
 
 use Filament\Resources\Pages\EditRecord;
-use Stephenjude\FilamentBlog\Resources\PostResource;
+use Illusive\Blog\Resources\PostResource;
 
 class EditPost extends EditRecord
 {

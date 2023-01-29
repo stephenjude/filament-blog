@@ -1,9 +1,9 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Tests\Database\Factories;
+namespace Illusive\Blog\Tests\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Stephenjude\FilamentBlog\Models\Author;
+use Illusive\Blog\Models\Author;
 
 class AuthorFactory extends Factory
 {

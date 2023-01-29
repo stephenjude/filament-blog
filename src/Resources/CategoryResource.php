@@ -1,6 +1,6 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Resources;
+namespace Illusive\Blog\Resources;
 
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -8,9 +8,9 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Support\Str;
-use Stephenjude\FilamentBlog\Models\Category;
-use Stephenjude\FilamentBlog\Resources\CategoryResource\Pages;
-use Stephenjude\FilamentBlog\Traits\HasContentEditor;
+use Illusive\Blog\Models\Category;
+use Illusive\Blog\Resources\CategoryResource\Pages;
+use Illusive\Blog\Traits\HasContentEditor;
 
 class CategoryResource extends Resource
 {

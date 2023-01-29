@@ -1,6 +1,6 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Models;
+namespace Illusive\Blog\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

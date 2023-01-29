@@ -1,7 +1,7 @@
 <?php
 
-use Stephenjude\FilamentBlog\Models\Category;
-use Stephenjude\FilamentBlog\Resources\CategoryResource;
+use Illusive\Blog\Models\Category;
+use Illusive\Blog\Resources\CategoryResource;
 
 it('can render category list table', function () {
     $this->get(CategoryResource::getUrl('index'))->assertSuccessful();

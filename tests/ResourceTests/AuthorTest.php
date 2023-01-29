@@ -1,7 +1,7 @@
 <?php
 
-use Stephenjude\FilamentBlog\Models\Author;
-use Stephenjude\FilamentBlog\Resources\AuthorResource;
+use Illusive\Blog\Models\Author;
+use Illusive\Blog\Resources\AuthorResource;
 
 it('can render author list table', function () {
     $this->get(AuthorResource::getUrl('index'))->assertSuccessful();

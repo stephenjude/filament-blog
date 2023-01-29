@@ -1,15 +1,17 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Resources;
+namespace Illusive\Blog\Resources;
 
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Stephenjude\FilamentBlog\Models\Author;
-use Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
-use Stephenjude\FilamentBlog\Traits\HasContentEditor;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Illusive\Blog\Models\Author;
+use Illusive\Blog\Resources\AuthorResource\Pages;
+use Illusive\Blog\Traits\HasContentEditor;
 
 class AuthorResource extends Resource
 {
@@ -41,15 +43,7 @@ class AuthorResource extends Resource
                             ->required()
                             ->email()
                             ->unique(Author::class, 'email', fn ($record) => $record),
-                        Forms\Components\FileUpload::make('photo')
-                            ->label(__('filament-blog::filament-blog.photo'))
-                            ->image()
-                            ->maxSize(5120)
-                            ->directory('blog')
-                            ->disk('public')
-                            ->columnSpan([
-                                'sm' => 2,
-                            ]),
+                        SpatieMediaLibraryFileUpload::make('avatar')->collection('avatar'),
                         self::getContentEditor('bio'),
                         Forms\Components\TextInput::make('github_handle')
                             ->label(__('filament-blog::filament-blog.github')),
@@ -82,9 +76,7 @@ class AuthorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('photo')
-                    ->label(__('filament-blog::filament-blog.photo'))
-                    ->rounded(),
+                SpatieMediaLibraryImageColumn::make('avatar')->collection('avatar'),
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('filament-blog::filament-blog.name'))
                     ->searchable()

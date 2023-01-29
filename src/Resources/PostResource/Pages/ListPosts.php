@@ -1,9 +1,9 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Resources\PostResource\Pages;
+namespace Illusive\Blog\Resources\PostResource\Pages;
 
 use Filament\Resources\Pages\ListRecords;
-use Stephenjude\FilamentBlog\Resources\PostResource;
+use Illusive\Blog\Resources\PostResource;
 
 class ListPosts extends ListRecords
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Commands;
+namespace Illusive\Blog\Commands;
 
 use Illuminate\Console\Command;
 
@@ -43,7 +43,11 @@ class InstallCommand extends Command
         $this->comment('Publishing Filament Blog Migrations...');
         $this->callSilent('vendor:publish', ['--tag' => 'filament-blog-migrations']);
         $this->callSilent('vendor:publish', ['--tag' => 'tags-migrations']);
-
+        $this->callSilent('vendor:publish', [
+            '--provider' => "Spatie\MediaLibrary\MediaLibraryServiceProvider",
+            '--tag' => 'tags-migrations',
+        ]);
+        $this->comment('If you need to rename the migration files do it now');
         $this->info('Filament blog was installed successfully.');
 
         return 0;

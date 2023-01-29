@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illusive\Blog\Models\Author;
+use Illusive\Blog\Models\Category;
 
 return new class () extends Migration {
     /**
@@ -22,6 +24,7 @@ return new class () extends Migration {
             $table->string('seo_description', 160)->nullable();
             $table->timestamps();
         });
+        $this->seedCategories();
 
         Schema::create('blog_authors', function (Blueprint $table) {
             $table->id();
@@ -33,6 +36,7 @@ return new class () extends Migration {
             $table->string('twitter_handle')->nullable();
             $table->timestamps();
         });
+        $this->seedAuthors();
 
         Schema::create('blog_posts', function (Blueprint $table) {
             $table->id();
@@ -41,11 +45,30 @@ return new class () extends Migration {
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('excerpt')->nullable();
-            $table->string('banner')->nullable();
             $table->longText('content');
             $table->date('published_at')->nullable();
             $table->timestamps();
         });
+    }
+    public function seedAuthors()
+    {
+        Author::create([
+            'name' => 'Chris Shortreed',
+            'email' => 'chris@mybestpic.com',
+            'bio' => 'this is my bio',
+        ]);
+    }
+
+    public function seedCategories()
+    {
+        Category::create([
+            'name' => 'Photos',
+            'slug' => 'photos',
+            'description' => 'photo tips and tricks',
+            'is_visible' => true,
+            'seo_title' => 'Photos',
+            'seo_description' => 'photo tips and tricks',
+        ]);
     }
 
     /**

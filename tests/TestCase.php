@@ -1,6 +1,6 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Tests;
+namespace Illusive\Blog\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
@@ -10,10 +10,10 @@ use Filament\Tables\TablesServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illusive\Blog\BlogServiceProvider;
+use Illusive\Blog\Tests\Models\User;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Stephenjude\FilamentBlog\BlogServiceProvider;
-use Stephenjude\FilamentBlog\Tests\Models\User;
 
 class TestCase extends Orchestra
 {
@@ -27,7 +27,7 @@ class TestCase extends Orchestra
         $this->actingAs(User::factory()->create());
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Stephenjude\\FilamentBlog\\Tests\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Illusive\\Blog\\Tests\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

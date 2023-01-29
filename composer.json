@@ -1,18 +1,18 @@
 {
-    "name": "stephenjude/filament-blog",
+    "name": "illusive/blog",
     "description": "Filament Blog Builder",
     "keywords": [
-        "stephenjude",
+        "illusive",
         "laravel",
         "filament-blog",
         "blog"
     ],
-    "homepage": "https://github.com/stephenjude/filament-blog",
+    "homepage": "https://github.com/Illusive/filament-blog",
     "license": "MIT",
     "authors": [
         {
-            "name": "stephenjude",
-            "email": "stephenjudesuccess@gmail.com",
+            "name": "chris shortreed",
+            "email": "chris@illusive.ch",
             "role": "Developer"
         }
     ],
@@ -21,7 +21,9 @@
         "spatie/laravel-package-tools": "^1.9.2",
         "filament/filament": "^2.0",
         "illuminate/contracts": "^8.0|^9.0",
-        "filament/spatie-laravel-tags-plugin": "^2.0"
+        "filament/spatie-laravel-tags-plugin": "^2.0",
+        "filament/spatie-laravel-media-library-plugin": "^2.0",
+        "inertiajs/inertia-laravel": "^0.6.3"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.10|^6.1",
@@ -32,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Stephenjude\\FilamentBlog\\": "src"
+            "Illusive\\Blog\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Stephenjude\\FilamentBlog\\Tests\\": "tests",
-            "Stephenjude\\FilamentBlog\\Tests\\Database\\Factories\\": "tests/database/factories"
+            "Illusive\\Blog\\Tests\\": "tests",
+            "Illusive\\Blog\\Tests\\Database\\Factories\\": "tests/database/factories"
         }
     },
     "scripts": {
@@ -55,7 +57,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Stephenjude\\FilamentBlog\\BlogServiceProvider"
+                "Illusive\\Blog\\BlogServiceProvider"
             ]
         }
     },

@@ -1,13 +1,13 @@
 <?php
 
-namespace Stephenjude\FilamentBlog;
+namespace Illusive\Blog;
 
 use Filament\PluginServiceProvider;
+use Illusive\Blog\Commands\InstallCommand;
+use Illusive\Blog\Resources\AuthorResource;
+use Illusive\Blog\Resources\CategoryResource;
+use Illusive\Blog\Resources\PostResource;
 use Spatie\LaravelPackageTools\Package;
-use Stephenjude\FilamentBlog\Commands\InstallCommand;
-use Stephenjude\FilamentBlog\Resources\AuthorResource;
-use Stephenjude\FilamentBlog\Resources\CategoryResource;
-use Stephenjude\FilamentBlog\Resources\PostResource;
 
 class BlogServiceProvider extends PluginServiceProvider
 {
@@ -24,6 +24,9 @@ class BlogServiceProvider extends PluginServiceProvider
             ->hasConfigFile()
             ->hasTranslations()
             ->hasCommand(InstallCommand::class)
+            ->hasRoute('web')
             ->hasMigration('create_filament_blog_tables');
+
+        $this->publishes([__DIR__.'/../resources/js/Pages' => resource_path('js/Pages')], 'vue-blog-pages');
     }
 }

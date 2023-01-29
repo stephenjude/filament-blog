@@ -1,9 +1,9 @@
 <?php
 
-namespace Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
+namespace Illusive\Blog\Resources\AuthorResource\Pages;
 
 use Filament\Resources\Pages\EditRecord;
-use Stephenjude\FilamentBlog\Resources\AuthorResource;
+use Illusive\Blog\Resources\AuthorResource;
 
 class EditAuthor extends EditRecord
 {
