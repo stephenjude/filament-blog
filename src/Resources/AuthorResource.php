@@ -43,7 +43,7 @@ class AuthorResource extends Resource
                             ->required()
                             ->email()
                             ->unique(Author::class, 'email', fn ($record) => $record),
-                        SpatieMediaLibraryFileUpload::make('avatar')->collection('avatar'),
+                        SpatieMediaLibraryFileUpload::make('avatar')->collection('avatar')->disk(config('media-library.disk_name')),
                         self::getContentEditor('bio'),
                         Forms\Components\TextInput::make('github_handle')
                             ->label(__('filament-blog::filament-blog.github')),
