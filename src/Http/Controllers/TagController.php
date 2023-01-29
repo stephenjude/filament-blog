@@ -6,24 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illusive\Blog\Models\Post;
+use Illusive\Blog\Models\Tag;
 use Illusive\Blog\Resources\PostApiResource;
 use Inertia\Inertia;
 
-class PostController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Inertia\Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $posts = Post::query()
-            ->paginate(9);
-
-        $posts = PostApiResource::collection($posts);
-
-        return Inertia::render('Post/Index', compact('posts'));
+        //
     }
 
     /**
@@ -51,25 +47,22 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function show(string $post)
+    public function show(string $tag)
     {
-        $post = Post::where('slug', $post)->first();
+        $tag = Tag::findFromString($tag);
 
-        $post = new PostApiResource($post->load('media', 'author.media'));
+//        $posts = Post::withAnyTags([$tag])->get();
+        $posts = Post::query()
+            ->whereHas('tags', function (Builder $query) use ($tag) {
+                $query->where('blog_tags.id', $tag->id);
+            })
+            ->paginate(9);
 
-        $morePosts = Post::query()
-            ->whereHas('tags', function (Builder $query) use ($post) {
-                $tagIds = collect($post->tags)->pluck('id');
+        $posts = PostApiResource::collection($posts);
 
-                $query->whereIn('blog_tags.id', $tagIds);
-            })->where('id', '!=', $post->id)
-            ->take(4)->get();
-
-        $morePosts = PostApiResource::collection($morePosts);
-
-        return Inertia::render('Post/Show', compact('post', 'morePosts'));
+        return Inertia::render('Post/Index', compact('posts', 'tag'));
     }
 
     /**
@@ -80,7 +73,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        abort(404);
+        //
     }
 
     /**
@@ -92,7 +85,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        abort(404);
+        //
     }
 
     /**
@@ -103,6 +96,28 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        abort(404);
+        //
+    }
+
+    protected static function convertToTags($values, $type = null, $locale = null)
+    {
+        if ($values instanceof \Spatie\Tags\Tag) {
+            $values = [$values];
+        }
+
+        return collect($values)->map(function ($value) use ($type, $locale) {
+            if ($value instanceof Tag) {
+                if (isset($type) && $value->type != $type) {
+                    throw new InvalidArgumentException("Type was set to {$type} but tag is of type {$value->type}");
+                }
+
+                return $value;
+            }
+
+            $className = config('tags.tag_model', \Spatie\Tags\Tag::class);
+            dd($className);
+
+            return $className::findFromString($value, $type, $locale);
+        });
     }
 }

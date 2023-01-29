@@ -20,6 +20,7 @@ class PostApiResource extends JsonResource
 
         return [
             'id' => $this->id,
+            'slug' => $this->slug,
             'category' => $this->category->name,
             'thumb' => $this->getFirstMediaUrl('banner', 'thumb'),
             'image' => $this->getFirstMediaUrl('banner', 'cropped'),
@@ -28,9 +29,12 @@ class PostApiResource extends JsonResource
             'content' => $content->getContent(),
             'reading_time' => $this->site_estimated_reading_time($this->content),
             'date' => $this->created_at->format('M d, Y'),
+            'tags' => TagApiResource::collection($this->tags),
             'author' => [
                 'name' => $this->author->name,
                 'image' => $this->author->getFirstMediaUrl('avatar', 'thumb'),
+                'cropped' => $this->author->getFirstMediaUrl('avatar', 'main'),
+                'bio' => $this->author->bio,
             ],
         ];
 //        return parent::toArray($request);

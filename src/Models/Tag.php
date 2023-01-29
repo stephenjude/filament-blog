@@ -12,4 +12,9 @@ class Tag extends \Spatie\Tags\Tag
      * @var string
      */
     protected $table = 'blog_tags';
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

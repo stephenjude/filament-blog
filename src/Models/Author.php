@@ -26,6 +26,9 @@ class Author extends Model implements HasMedia
         $this->addMediaConversion('thumb')
             ->width(50)
             ->height(50);
+        $this->addMediaConversion('cropped')
+            ->width(175)
+            ->height(175);
     }
 
     /**

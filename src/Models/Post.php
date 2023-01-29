@@ -27,6 +27,11 @@ class Post extends Model implements HasMedia
         return Tag::class;
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('banner')->singleFile();
@@ -35,8 +40,8 @@ class Post extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('cropped')
-            ->height(700)
-            ->width(700);
+            ->height(750)
+            ->width(650);
 
         $this->addMediaConversion('thumb')
             ->width(397)
