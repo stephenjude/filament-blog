@@ -10,16 +10,19 @@ A faceless blog content manager with configurable richtext and markdown support 
 ![](./art/screen1.png)
 
 ## Filament Admin Panel
-This package is tailored for [Filament Admin Panel](https://filamentphp.com/). 
+
+This package is tailored for [Filament Admin Panel](https://filamentphp.com/).
 
 Make sure you have installed the admin panel before you continue with the installation. You can check the [documentation here](https://filamentphp.com/docs/admin)
 
 ## Supported Versions
-PHP: `8.0`
 
-Laravel: `8` & `9`
+PHP: `8.1` & `8.2`
+
+Laravel: `9` & `10`
 
 ## Installation
+
 You can install the package via composer:
 
 ```bash
@@ -32,16 +35,17 @@ php artisan storage:link
 php artisan migrate
 ```
 
-
 ## Displaying your content
+
 Filment blog builder is faceless, it doesn't have any opinions on how you display your content in your frontend. You can use the blog models in your controllers to display the different resources:
 
-- `Stephenjude\FilamentBlog\Models\Post`
-- `Stephenjude\FilamentBlog\Models\Author`
-- `Stephenjude\FilamentBlog\Models\Category`
+-   `Stephenjude\FilamentBlog\Models\Post`
+-   `Stephenjude\FilamentBlog\Models\Author`
+-   `Stephenjude\FilamentBlog\Models\Category`
 
 ### Posts & Drafts
-```php 
+
+```php
 $posts = Post::published()->get();
 
 $drafts = Post::draft()->get();
@@ -49,6 +53,7 @@ $drafts = Post::draft()->get();
 ```
 
 ### Post Content
+
 ```php
 $post = Post::find($id);
 
@@ -62,6 +67,7 @@ $post->published_at;
 ```
 
 ### Post Category & Author
+
 ```php
 $post = Post::with(['author', 'category'])->find($id);
 
@@ -89,6 +95,7 @@ $category->seo_description;
 ```
 
 ### Configurations
+
 This is the contents of the published config file:
 
 ```php
@@ -152,8 +159,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [stephenjude](https://github.com/stephenjude)
-- [All Contributors](../../contributors)
+-   [stephenjude](https://github.com/stephenjude)
+-   [All Contributors](../../contributors)
 
 ## License
 
