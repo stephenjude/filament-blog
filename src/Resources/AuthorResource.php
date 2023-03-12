@@ -44,9 +44,9 @@ class AuthorResource extends Resource
                         Forms\Components\FileUpload::make('photo')
                             ->label(__('filament-blog::filament-blog.photo'))
                             ->image()
-                            ->maxSize(5120)
-                            ->directory('blog')
-                            ->disk('public')
+                            ->disk(config('filament-blog.avatar.disk', 'public'))
+                            ->maxSize(config('filament-blog.avatar.maxSize', 5120))
+                            ->directory(config('filament-blog.avatar.directory', 'blog'))
                             ->columnSpan([
                                 'sm' => 2,
                             ]),
