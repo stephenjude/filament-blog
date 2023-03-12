@@ -1,0 +1,11 @@
+name: Request a feature
+description: Share ideas for new features
+labels: Ideas
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature description
+      description: Please describe your feature Idea here
+    validations:
+      required: true
