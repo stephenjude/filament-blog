@@ -22,6 +22,15 @@ return [
     ],
 
     /**
+     * Configs for Posts that give you option to change
+     * the sort column and direction of the Posts.
+     */
+    'sort' => [
+        'column' => 'published_at',
+        'direction' => 'asc',
+    ],
+
+    /**
      * Configs for Author Avatar file that give you option to change
      * Disk,Directory name , maximum upload size and the
      * Of the Author avatar image.

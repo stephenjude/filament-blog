@@ -128,6 +128,15 @@ return [
         'strike',
         'undo',
     ],
+
+    /**
+     * Configs for Posts that give you the option to change
+     * the sort column and direction of the Posts.
+     */
+    'sort' => [
+        'column' => 'published_at',
+        'direction' => 'asc',
+    ],
 ];
 ```
 
