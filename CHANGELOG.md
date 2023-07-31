@@ -2,6 +2,10 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 1.1.1 - 2023-07-31
+
+- fixed typo error sortable method - #32
+
 ## 1.1.0 - 2023-07-31
 
 - Ability to sort posts by a specified column and direction by @oli799
