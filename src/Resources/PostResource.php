@@ -135,8 +135,9 @@ class PostResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('published_at')
                     ->label(__('filament-blog::filament-blog.published_at'))
-                    ->date(),
-            ])
+                    ->date()
+                    ->sotable(),
+            ])->defaultSort(config('filament-blog.sort.column', 'published_at'), config('filament-blog.sort.direction', 'asc'))
             ->filters([
                 Tables\Filters\Filter::make('published_at')
                     ->form([
