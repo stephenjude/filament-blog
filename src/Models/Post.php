@@ -48,7 +48,7 @@ class Post extends Model
 
     public function bannerUrl(): Attribute
     {
-        return Attribute::get(fn () => asset(Storage::url($this->banner)));
+        return Attribute::get(fn () => $this->banner ? asset(Storage::url($this->banner)) : '');
     }
 
     public function scopePublished(Builder $query)
