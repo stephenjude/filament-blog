@@ -2,6 +2,10 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 1.1.2 - 2023-08-17
+
+- Allow nullable asset fields — @pheeque
+
 ## 1.1.1 - 2023-07-31
 
 - fixed typo error sortable method - #32
