@@ -2,11 +2,11 @@
 
 namespace Stephenjude\FilamentBlog;
 
+use Filament\Contracts\Plugin;
+use Filament\Panel;
 use Stephenjude\FilamentBlog\Resources\AuthorResource;
 use Stephenjude\FilamentBlog\Resources\CategoryResource;
 use Stephenjude\FilamentBlog\Resources\PostResource;
-use Filament\Contracts\Plugin;
-use Filament\Panel;
 
 class BlogPlugin implements Plugin
 {
