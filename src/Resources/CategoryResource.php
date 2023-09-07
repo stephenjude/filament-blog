@@ -3,9 +3,9 @@
 namespace Stephenjude\FilamentBlog\Resources;
 
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Support\Str;
 use Stephenjude\FilamentBlog\Models\Category;
@@ -32,7 +32,7 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()
+                Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->label(__('filament-blog::filament-blog.name'))
@@ -53,7 +53,7 @@ class CategoryResource extends Resource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Forms\Components\Card::make()
+                Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label(__('filament-blog::filament-blog.created_at'))
@@ -79,7 +79,8 @@ class CategoryResource extends Resource
                     ->label(__('filament-blog::filament-blog.slug'))
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\BooleanColumn::make('is_visible')
+                Tables\Columns\IconColumn::make('is_visible')
+                    ->boolean()
                     ->label(__('filament-blog::filament-blog.visibility')),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label(__('filament-blog::filament-blog.last_updated'))

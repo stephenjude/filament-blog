@@ -4,9 +4,9 @@ namespace Stephenjude\FilamentBlog\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Components\SpatieTagsInput;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -38,7 +38,7 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()
+                Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('title')
                             ->label(__('filament-blog::filament-blog.title'))
@@ -74,15 +74,15 @@ class PostResource extends Resource
 
                         self::getContentEditor('content'),
 
-                        Forms\Components\BelongsToSelect::make('blog_author_id')
+                        Forms\Components\Select::make('blog_author_id')
                             ->label(__('filament-blog::filament-blog.author'))
-                            ->relationship('author', 'name')
+                            ->relationship(name: 'author', titleAttribute: 'name')
                             ->searchable()
                             ->required(),
 
-                        Forms\Components\BelongsToSelect::make('blog_category_id')
+                        Forms\Components\Select::make('blog_category_id')
                             ->label(__('filament-blog::filament-blog.category'))
-                            ->relationship('category', 'name')
+                            ->relationship(name: 'category', titleAttribute: 'name')
                             ->searchable()
                             ->required(),
 
@@ -96,7 +96,7 @@ class PostResource extends Resource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Forms\Components\Card::make()
+                Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label(__('filament-blog::filament-blog.created_at'))
@@ -120,7 +120,7 @@ class PostResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('banner')
                     ->label(__('filament-blog::filament-blog.banner'))
-                    ->rounded(),
+                    ->circular(),
                 Tables\Columns\TextColumn::make('title')
                     ->label(__('filament-blog::filament-blog.title'))
                     ->searchable()
@@ -176,7 +176,7 @@ class PostResource extends Resource
         ];
     }
 
-    protected static function getGlobalSearchEloquentQuery(): Builder
+    public static function getGlobalSearchEloquentQuery(): Builder
     {
         return parent::getGlobalSearchEloquentQuery()->with(['author', 'category']);
     }
