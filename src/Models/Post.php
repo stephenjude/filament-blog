@@ -10,6 +10,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Tags\HasTags;
 
+/**
+ * Stephenjude\FilamentBlog\Models\Post
+ *
+ * @property string $title
+ * @property string $slug
+ * @property ?string $excerpt
+ * @property ?string $banner
+ * @property string $content
+ * @property ?string $published_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Category|null $category
+ * @property-read Author|null $author
+ */
 class Post extends Model
 {
     use HasFactory;

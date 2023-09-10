@@ -8,6 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Stephenjude\FilamentBlog\Models\Author
+ *
+ * @property string $name
+ * @property ?string $email
+ * @property ?string $photo
+ * @property ?string $bio
+ * @property ?string $github_handle
+ * @property ?string $twitter_handle
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ */
 class Author extends Model
 {
     use HasFactory;
