@@ -44,6 +44,8 @@ class Post extends Model
         'banner',
         'content',
         'published_at',
+        'blog_author_id',
+        'blog_category_id',
     ];
 
     /**

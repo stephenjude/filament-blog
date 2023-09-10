@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Stephenjude\FilamentBlog\Models\Author;
 use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource;
@@ -24,11 +25,13 @@ it('can create', function () {
     livewire(PostResource\Pages\CreatePost::class)
         ->fillForm([
             'title' => $newData->title,
-            'slug' => $newData->slug,
             'excerpt' => $newData->excerpt,
             'content' => $newData->content,
             'blog_author_id' => $newData->author->getKey(),
             'blog_category_id' => $newData->category->getKey(),
+        ])
+        ->assertFormSet([
+            'slug' => Str::slug($newData->title),
         ])
         ->call('create')
         ->assertHasNoFormErrors();

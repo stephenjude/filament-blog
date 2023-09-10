@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Stephenjude\FilamentBlog\Models\Category;
 use Stephenjude\FilamentBlog\Resources\CategoryResource;
 
@@ -20,6 +21,9 @@ it('can create', function () {
             'name' => $newData->name,
             'description' => $newData->description,
             'is_visible' => $newData->is_visible,
+        ])
+        ->assertFormSet([
+            'slug' => Str::slug($newData->name),
         ])
         ->call('create')
         ->assertHasNoFormErrors();
