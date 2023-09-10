@@ -54,7 +54,7 @@ class Category extends Model
     }
 
     /**
-     * @param Builder<Category> $query
+     * @param  Builder<Category>  $query
      * @return Builder<Category>
      */
     public function scopeIsVisible(Builder $query)
@@ -63,7 +63,7 @@ class Category extends Model
     }
 
     /**
-     * @param Builder<Category> $query
+     * @param  Builder<Category>  $query
      * @return Builder<Category>
      */
     public function scopeIsInvisible(Builder $query)

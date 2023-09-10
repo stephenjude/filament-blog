@@ -33,7 +33,7 @@ class TestCase extends Orchestra
         $this->actingAs(User::factory()->create());
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Stephenjude\\FilamentBlog\\Tests\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Stephenjude\\FilamentBlog\\Tests\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 
