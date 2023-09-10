@@ -5,6 +5,8 @@ namespace Stephenjude\FilamentBlog\Resources;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -42,12 +44,17 @@ class PostResource extends Resource
                         Forms\Components\TextInput::make('title')
                             ->label(__('filament-blog::filament-blog.title'))
                             ->required()
-                            ->reactive()
-                            ->afterStateUpdated(fn ($state, \Filament\Forms\Set $set) => $set('slug', Str::slug($state))),
+                            ->live()
+                            ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                                if (($get('slug') ?? '') !== Str::slug($old)) {
+                                    return;
+                                }
+
+                                $set('slug', Str::slug($state));
+                            }),
 
                         Forms\Components\TextInput::make('slug')
                             ->label(__('filament-blog::filament-blog.slug'))
-                            ->disabled()
                             ->required()
                             ->unique(Post::class, 'slug', fn ($record) => $record),
 
@@ -88,8 +95,7 @@ class PostResource extends Resource
                         Forms\Components\DatePicker::make('published_at')
                             ->label(__('filament-blog::filament-blog.published_date')),
                         SpatieTagsInput::make('tags')
-                            ->label(__('filament-blog::filament-blog.tags'))
-                            ->required(),
+                            ->label(__('filament-blog::filament-blog.tags')),
                     ])
                     ->columns([
                         'sm' => 2,

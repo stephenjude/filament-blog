@@ -20,6 +20,7 @@ use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 use Stephenjude\FilamentBlog\BlogServiceProvider;
 use Stephenjude\FilamentBlog\Tests\Models\User;
+use Stephenjude\FilamentBlog\Tests\Panel\TestPanelProvider;
 
 class TestCase extends Orchestra
 {
@@ -52,7 +53,10 @@ class TestCase extends Orchestra
             SupportServiceProvider::class,
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
+
             BlogServiceProvider::class,
+
+            TestPanelProvider::class,
         ];
     }
 

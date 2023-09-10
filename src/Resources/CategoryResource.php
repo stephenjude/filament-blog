@@ -4,6 +4,8 @@ namespace Stephenjude\FilamentBlog\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -37,11 +39,16 @@ class CategoryResource extends Resource
                         Forms\Components\TextInput::make('name')
                             ->label(__('filament-blog::filament-blog.name'))
                             ->required()
-                            ->reactive()
-                            ->afterStateUpdated(fn ($state, \Filament\Forms\Set $set) => $set('slug', Str::slug($state))),
+                            ->live()
+                            ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                                if (($get('slug') ?? '') !== Str::slug($old)) {
+                                    return;
+                                }
+
+                                $set('slug', Str::slug($state));
+                            }),
                         Forms\Components\TextInput::make('slug')
                             ->label(__('filament-blog::filament-blog.slug'))
-                            ->disabled()
                             ->required()
                             ->unique(Category::class, 'slug', fn ($record) => $record),
                         self::getContentEditor('description'),
