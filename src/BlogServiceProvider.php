@@ -15,6 +15,7 @@ class BlogServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasTranslations()
             ->hasCommand(InstallCommand::class)
-            ->hasMigration('create_filament_blog_tables');
+            ->hasMigration('create_filament_blog_tables')
+            ->runsMigrations();
     }
 }

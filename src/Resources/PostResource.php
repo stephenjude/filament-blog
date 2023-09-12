@@ -44,7 +44,7 @@ class PostResource extends Resource
                         Forms\Components\TextInput::make('title')
                             ->label(__('filament-blog::filament-blog.title'))
                             ->required()
-                            ->live()
+                            ->live(debounce: 500)
                             ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
                                 if (($get('slug') ?? '') !== Str::slug($old)) {
                                     return;
@@ -83,6 +83,13 @@ class PostResource extends Resource
                         Forms\Components\Select::make('blog_author_id')
                             ->label(__('filament-blog::filament-blog.author'))
                             ->relationship(name: 'author', titleAttribute: 'name')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('email')
+                                    ->required()
+                                    ->email(),
+                            ])
                             ->searchable()
                             ->required(),
 
