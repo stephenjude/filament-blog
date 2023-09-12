@@ -18,9 +18,11 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
+use Spatie\Tags\TagsServiceProvider;
 use Stephenjude\FilamentBlog\BlogServiceProvider;
 use Stephenjude\FilamentBlog\Tests\Models\User;
 use Stephenjude\FilamentBlog\Tests\Panel\TestPanelProvider;
+use function Orchestra\Testbench\artisan;
 
 class TestCase extends Orchestra
 {
@@ -53,6 +55,7 @@ class TestCase extends Orchestra
             SupportServiceProvider::class,
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
+            TagsServiceProvider::class,
 
             BlogServiceProvider::class,
 
@@ -69,6 +72,6 @@ class TestCase extends Orchestra
 
     protected function defineDatabaseMigrations()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadLaravelMigrations();
     }
 }
