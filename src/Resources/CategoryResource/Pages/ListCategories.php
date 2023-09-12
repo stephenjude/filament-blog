@@ -2,9 +2,9 @@
 
 namespace Stephenjude\FilamentBlog\Resources\CategoryResource\Pages;
 
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Stephenjude\FilamentBlog\Resources\CategoryResource;
-use Filament\Actions;
 
 class ListCategories extends ListRecords
 {
