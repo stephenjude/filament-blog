@@ -2,9 +2,9 @@
 
 namespace Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
 
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Stephenjude\FilamentBlog\Resources\AuthorResource;
-use Filament\Actions;
 
 class EditAuthor extends EditRecord
 {

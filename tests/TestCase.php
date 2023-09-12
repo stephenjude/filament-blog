@@ -22,7 +22,6 @@ use Spatie\Tags\TagsServiceProvider;
 use Stephenjude\FilamentBlog\BlogServiceProvider;
 use Stephenjude\FilamentBlog\Tests\Models\User;
 use Stephenjude\FilamentBlog\Tests\Panel\TestPanelProvider;
-use function Orchestra\Testbench\artisan;
 
 class TestCase extends Orchestra
 {

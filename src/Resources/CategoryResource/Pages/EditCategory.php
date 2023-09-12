@@ -2,9 +2,9 @@
 
 namespace Stephenjude\FilamentBlog\Resources\CategoryResource\Pages;
 
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Stephenjude\FilamentBlog\Resources\CategoryResource;
-use Filament\Actions;
 
 class EditCategory extends EditRecord
 {
