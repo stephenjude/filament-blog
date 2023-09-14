@@ -37,6 +37,10 @@ class TestCase extends Orchestra
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Stephenjude\\FilamentBlog\\Tests\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
+
+
+        $this->artisan('migrate',
+            ['--database' => 'testbench'])->run();
     }
 
     protected function getPackageProviders($app)
