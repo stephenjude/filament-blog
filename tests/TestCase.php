@@ -13,6 +13,7 @@ use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Encryption\Encrypter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\LivewireServiceProvider;
@@ -38,9 +39,6 @@ class TestCase extends Orchestra
             fn (string $modelName) => 'Stephenjude\\FilamentBlog\\Tests\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
 
-
-        $this->artisan('migrate',
-            ['--database' => 'testbench'])->run();
     }
 
     protected function getPackageProviders($app)
@@ -68,15 +66,16 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set('auth.providers.users.model', User::class);
-        config()->set('database.default', 'testbench');
-        config()->set('app.key', 'base64:EWcFBKBT8lKlGK8nQhTHY+wg19QlfmbhtO9Qnn3NfcA=');
-
-        $app['config']->set('database.connections.testbench', [
+        config()->set('database.default', 'sqlite');
+        config()->set('database.connections.sqlite', [
             'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
         ]);
+
+        config()->set('auth.providers.users.model', User::class);
+        config()->set('app.key', 'base64:'.base64_encode(
+                Encrypter::generateKey(config()['app.cipher'])
+            ));
     }
 
     protected function defineDatabaseMigrations()
