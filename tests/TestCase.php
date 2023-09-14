@@ -73,9 +73,9 @@ class TestCase extends Orchestra
         ]);
 
         config()->set('auth.providers.users.model', User::class);
-        config()->set('app.key', 'base64:'.base64_encode(
-                Encrypter::generateKey(config()['app.cipher'])
-            ));
+        config()->set('app.key', 'base64:' . base64_encode(
+            Encrypter::generateKey(config()['app.cipher'])
+        ));
     }
 
     protected function defineDatabaseMigrations()
