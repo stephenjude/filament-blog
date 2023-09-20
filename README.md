@@ -35,9 +35,22 @@ php artisan storage:link
 php artisan migrate
 ```
 
+You'll have to register the plugin in your panel provider.
+
+```php
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ...
+        ->plugin(
+            Stephenjude\FilamentBlog\BlogPlugin::make()
+        );
+}
+```
+
 ## Displaying your content
 
-Filment blog builder is faceless, it doesn't have any opinions on how you display your content in your frontend. You can use the blog models in your controllers to display the different resources:
+Filament blog builder is faceless, it doesn't have any opinions on how you display your content in your frontend. You can use the blog models in your controllers to display the different resources:
 
 -   `Stephenjude\FilamentBlog\Models\Post`
 -   `Stephenjude\FilamentBlog\Models\Author`
