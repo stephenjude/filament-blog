@@ -1,18 +1,61 @@
 <?php
 
+use Illuminate\Support\Str;
+use Stephenjude\FilamentBlog\Models\Author;
 use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource;
 
-it('can render post list table', function () {
-    $this->get(PostResource::getUrl('index'))->assertSuccessful();
+use function Pest\Livewire\livewire;
+
+it('can list', function () {
+    $posts = Post::factory()->count(10)->create();
+
+    livewire(PostResource\Pages\ListPosts::class)
+        ->assertCanSeeTableRecords($posts);
 });
 
-it('can render post create form', function () {
-    $this->get(PostResource::getUrl('create'))->assertSuccessful();
+it('can create', function () {
+    $newData = Post::factory()->make();
+
+    $this->assertDatabaseHas(Author::class, [
+        'name' => $newData->author->name,
+        'email' => $newData->author->email,
+    ]);
+
+    livewire(PostResource\Pages\CreatePost::class)
+        ->fillForm([
+            'title' => $newData->title,
+            'excerpt' => $newData->excerpt,
+            'content' => $newData->content,
+            'blog_author_id' => $newData->author->getKey(),
+            'blog_category_id' => $newData->category->getKey(),
+        ])
+        ->assertFormSet([
+            'slug' => Str::slug($newData->title),
+        ])
+        ->call('create')
+        ->assertHasNoFormErrors();
+
+    $this->assertDatabaseHas(Post::class, [
+        'title' => $newData->title,
+        'slug' => $newData->slug,
+        'excerpt' => $newData->excerpt,
+        'content' => $newData->content,
+        'blog_author_id' => $newData->author->getKey(),
+        'blog_category_id' => $newData->category->getKey(),
+    ]);
 });
 
-it('can render post edit form', function () {
-    $this->get(PostResource::getUrl('edit', [
-        'record' => Post::factory()->create(),
-    ]))->assertSuccessful();
+it('can retrieve data', function () {
+    $post = Post::factory()->create();
+
+    livewire(PostResource\Pages\EditPost::class, [
+        'record' => $post->getRouteKey(),
+    ])
+        ->assertFormSet([
+            'title' => $post->title,
+            'slug' => $post->slug,
+            'excerpt' => $post->excerpt,
+            'content' => $post->content,
+        ]);
 });

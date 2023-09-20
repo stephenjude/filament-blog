@@ -4,19 +4,20 @@ namespace Stephenjude\FilamentBlog\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Components\SpatieTagsInput;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-
-use function now;
-
 use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
+
+use function now;
 
 class PostResource extends Resource
 {
@@ -38,17 +39,22 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()
+                Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('title')
                             ->label(__('filament-blog::filament-blog.title'))
                             ->required()
-                            ->reactive()
-                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
+                            ->live(debounce: 500)
+                            ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                                if (($get('slug') ?? '') !== Str::slug($old)) {
+                                    return;
+                                }
+
+                                $set('slug', Str::slug($state));
+                            }),
 
                         Forms\Components\TextInput::make('slug')
                             ->label(__('filament-blog::filament-blog.slug'))
-                            ->disabled()
                             ->required()
                             ->unique(Post::class, 'slug', fn ($record) => $record),
 
@@ -74,29 +80,35 @@ class PostResource extends Resource
 
                         self::getContentEditor('content'),
 
-                        Forms\Components\BelongsToSelect::make('blog_author_id')
+                        Forms\Components\Select::make('blog_author_id')
                             ->label(__('filament-blog::filament-blog.author'))
-                            ->relationship('author', 'name')
+                            ->relationship(name: 'author', titleAttribute: 'name')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('email')
+                                    ->required()
+                                    ->email(),
+                            ])
                             ->searchable()
                             ->required(),
 
-                        Forms\Components\BelongsToSelect::make('blog_category_id')
+                        Forms\Components\Select::make('blog_category_id')
                             ->label(__('filament-blog::filament-blog.category'))
-                            ->relationship('category', 'name')
+                            ->relationship(name: 'category', titleAttribute: 'name')
                             ->searchable()
                             ->required(),
 
                         Forms\Components\DatePicker::make('published_at')
                             ->label(__('filament-blog::filament-blog.published_date')),
                         SpatieTagsInput::make('tags')
-                            ->label(__('filament-blog::filament-blog.tags'))
-                            ->required(),
+                            ->label(__('filament-blog::filament-blog.tags')),
                     ])
                     ->columns([
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Forms\Components\Card::make()
+                Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label(__('filament-blog::filament-blog.created_at'))
@@ -120,7 +132,7 @@ class PostResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('banner')
                     ->label(__('filament-blog::filament-blog.banner'))
-                    ->rounded(),
+                    ->circular(),
                 Tables\Columns\TextColumn::make('title')
                     ->label(__('filament-blog::filament-blog.title'))
                     ->searchable()
@@ -142,7 +154,7 @@ class PostResource extends Resource
                 Tables\Filters\Filter::make('published_at')
                     ->form([
                         Forms\Components\DatePicker::make('published_from')
-                            ->placeholder(fn ($state): string => 'Dec 18, '.now()->subYear()->format('Y')),
+                            ->placeholder(fn ($state): string => 'Dec 18, ' . now()->subYear()->format('Y')),
                         Forms\Components\DatePicker::make('published_until')
                             ->placeholder(fn ($state): string => now()->format('M d, Y')),
                     ])
@@ -176,7 +188,7 @@ class PostResource extends Resource
         ];
     }
 
-    protected static function getGlobalSearchEloquentQuery(): Builder
+    public static function getGlobalSearchEloquentQuery(): Builder
     {
         return parent::getGlobalSearchEloquentQuery()->with(['author', 'category']);
     }
@@ -188,6 +200,7 @@ class PostResource extends Resource
 
     public static function getGlobalSearchResultDetails(Model $record): array
     {
+        /** @var Post $record */
         $details = [];
 
         if ($record->author) {

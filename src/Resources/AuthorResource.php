@@ -3,10 +3,10 @@
 namespace Stephenjude\FilamentBlog\Resources;
 
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Stephenjude\FilamentBlog\Models\Author;
 use Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
@@ -31,7 +31,7 @@ class AuthorResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()
+                Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->label(__('filament-blog::filament-blog.name'))
@@ -60,7 +60,7 @@ class AuthorResource extends Resource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Forms\Components\Card::make()
+                Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label(__('filament-blog::filament-blog.created_at'))
@@ -84,7 +84,7 @@ class AuthorResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('photo')
                     ->label(__('filament-blog::filament-blog.photo'))
-                    ->rounded(),
+                    ->circular(),
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('filament-blog::filament-blog.name'))
                     ->searchable()

@@ -19,7 +19,7 @@ Make sure you have installed the admin panel before you continue with the instal
 
 PHP: `8.1` & `8.2`
 
-Laravel: `9` & `10`
+Laravel: `10`
 
 ## Installation
 

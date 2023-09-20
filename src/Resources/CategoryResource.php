@@ -3,10 +3,12 @@
 namespace Stephenjude\FilamentBlog\Resources;
 
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Stephenjude\FilamentBlog\Models\Category;
 use Stephenjude\FilamentBlog\Resources\CategoryResource\Pages;
@@ -24,7 +26,7 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog';
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?int $navigationSort = 1;
 
@@ -32,16 +34,21 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()
+                Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->label(__('filament-blog::filament-blog.name'))
                             ->required()
-                            ->reactive()
-                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
+                            ->live()
+                            ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                                if (($get('slug') ?? '') !== Str::slug($old)) {
+                                    return;
+                                }
+
+                                $set('slug', Str::slug($state));
+                            }),
                         Forms\Components\TextInput::make('slug')
                             ->label(__('filament-blog::filament-blog.slug'))
-                            ->disabled()
                             ->required()
                             ->unique(Category::class, 'slug', fn ($record) => $record),
                         self::getContentEditor('description'),
@@ -53,7 +60,7 @@ class CategoryResource extends Resource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Forms\Components\Card::make()
+                Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label(__('filament-blog::filament-blog.created_at'))
@@ -79,7 +86,8 @@ class CategoryResource extends Resource
                     ->label(__('filament-blog::filament-blog.slug'))
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\BooleanColumn::make('is_visible')
+                Tables\Columns\IconColumn::make('is_visible')
+                    ->boolean()
                     ->label(__('filament-blog::filament-blog.visibility')),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label(__('filament-blog::filament-blog.last_updated'))
