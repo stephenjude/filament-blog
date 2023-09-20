@@ -2,6 +2,10 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 2.0.0 - 2023-09-20
+
+- Filament v3 support by @Simoneu01
+
 ## 1.1.2 - 2023-08-17
 
 - Allow nullable asset fields — @pheeque
