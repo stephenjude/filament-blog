@@ -2,6 +2,10 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 2.0.1 - 2023-10-08
+
+- Fixes rollback issue #40 by @Simoneu01
+
 ## 2.0.0 - 2023-09-20
 
 - Filament v3 support by @Simoneu01
