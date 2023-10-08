@@ -53,8 +53,8 @@ return new class () extends Migration {
      */
     public function down()
     {
+        Schema::dropIfExists('blog_posts');
         Schema::dropIfExists('blog_categories');
         Schema::dropIfExists('blog_authors');
-        Schema::dropIfExists('blog_posts');
     }
 };
