@@ -2,6 +2,10 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 2.0.3 - 2023-10-13
+
+- Adjust some translations.
+
 ## 2.0.2 - 2023-10-13
 
 - Make the content field required and wrap long content by @martinmildner
