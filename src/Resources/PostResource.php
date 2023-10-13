@@ -136,7 +136,7 @@ class PostResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->label(__('filament-blog::filament-blog.title'))
                     ->searchable()
-					->wrap()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('author.name')
                     ->label(__('filament-blog::filament-blog.author_name'))
