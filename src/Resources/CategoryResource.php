@@ -81,11 +81,11 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('filament-blog::filament-blog.name'))
                     ->searchable()
-					->wrap()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->label(__('filament-blog::filament-blog.slug'))
-					->wrap()
+                    ->wrap()
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_visible')

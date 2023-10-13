@@ -88,7 +88,7 @@ class AuthorResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('filament-blog::filament-blog.name'))
                     ->searchable()
-					->wrap()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('email')
                     ->label(__('filament-blog::filament-blog.email'))
