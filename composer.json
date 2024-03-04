@@ -22,14 +22,14 @@
         "filament/filament": "^3.0.49",
         "filament/forms": "^3.0.49",
         "filament/tables": "^3.0.49",
-        "illuminate/contracts": "^10.0",
+        "illuminate/contracts": "^10.0|^11.0",
         "filament/spatie-laravel-tags-plugin": "^v3.0"
     },
     "require-dev": {
         "laravel/pint": "^1.13.1",
-        "nunomaduro/collision": "^7.8.1",
+        "nunomaduro/collision": "^7.8.1|^8.0",
         "nunomaduro/larastan": "^2.6.4",
-        "orchestra/testbench": "^8.10.2",
+        "orchestra/testbench": "^8.10.2|^9.0",
         "pestphp/pest": "^2.18.2",
         "pestphp/pest-plugin-arch": "^2.3.3",
         "pestphp/pest-plugin-laravel": "^2.2",
