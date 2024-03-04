@@ -2,6 +2,10 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 3.0.0 - 2024-03-04
+
+- Laravel 11.x Compatibility by @laravel-shift
+
 ## 2.0.3 - 2023-10-13
 
 - Adjust some translations.
