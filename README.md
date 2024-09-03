@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/stephenjude/filament-blog/main/art/banner.jpg)
+
 # Filament Blog Builder
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/stephenjude/filament-blog.svg?style=flat-square)](https://packagist.org/packages/stephenjude/filament-blog)
@@ -7,7 +9,7 @@
 
 A faceless blog content manager with configurable richtext and markdown support for filament admin panel.
 
-![](./art/screen1.png)
+![](https://raw.githubusercontent.com/stephenjude/filament-blog/main/art/screen1.png)
 
 ## Filament Admin Panel
 
@@ -155,11 +157,11 @@ return [
 
 ## More Screenshots
 
-![](./art/screen2.png)
+![](https://raw.githubusercontent.com/stephenjude/filament-blog/main/art/screen2.png)
 
 ---
 
-![](./art/screen3.png)
+![](https://raw.githubusercontent.com/stephenjude/filament-blog/main/art/screen3.png)
 
 ## Testing
 
