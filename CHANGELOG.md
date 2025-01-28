@@ -2,6 +2,10 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 3.0.1 - 2025-01-28
+
+- Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 #58
+
 ## 3.0.0 - 2024-03-04
 
 - Laravel 11.x Compatibility by @laravel-shift
