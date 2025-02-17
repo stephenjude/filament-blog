@@ -73,6 +73,7 @@ class PostResource extends Resource
                             ->maxSize(config('filament-blog.banner.maxSize', 5120))
                             ->imageCropAspectRatio(config('filament-blog.banner.cropAspectRatio', '16:9'))
                             ->disk(config('filament-blog.banner.disk', 'public'))
+                            ->visibility(config('filament-blog.banner.visibility', 'public'))
                             ->directory(config('filament-blog.banner.directory', 'blog'))
                             ->columnSpan([
                                 'sm' => 2,
@@ -131,6 +132,8 @@ class PostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('banner')
+                    ->disk(config('filament-blog.banner.disk', 'public'))
+                    ->visibility(config('filament-blog.banner.visibility', 'public'))
                     ->label(__('filament-blog::filament-blog.banner'))
                     ->circular(),
                 Tables\Columns\TextColumn::make('title')

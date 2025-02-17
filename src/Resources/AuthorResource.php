@@ -45,6 +45,7 @@ class AuthorResource extends Resource
                             ->label(__('filament-blog::filament-blog.photo'))
                             ->image()
                             ->disk(config('filament-blog.avatar.disk', 'public'))
+                            ->visibility(config('filament-blog.avatar.visibility', 'public'))
                             ->maxSize(config('filament-blog.avatar.maxSize', 5120))
                             ->directory(config('filament-blog.avatar.directory', 'blog'))
                             ->columnSpan([
@@ -83,6 +84,8 @@ class AuthorResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('photo')
+                    ->disk(config('filament-blog.avatar.disk', 'public'))
+                    ->visibility(config('filament-blog.banner.visibility', 'public'))
                     ->label(__('filament-blog::filament-blog.photo'))
                     ->circular(),
                 Tables\Columns\TextColumn::make('name')

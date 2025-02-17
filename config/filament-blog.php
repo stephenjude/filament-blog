@@ -19,6 +19,7 @@ return [
         'directory' => 'blog',
         'maxSize' => 5120,
         'cropAspectRatio' => '16:9',
+        'visibility' => 'public',
     ],
 
     /**
@@ -39,6 +40,7 @@ return [
         'disk' => 'public',
         'directory' => 'blog',
         'maxSize' => 5120,
+        'visibility' => 'public',
     ],
 
     /**
