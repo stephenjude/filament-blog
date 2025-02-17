@@ -2,6 +2,18 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 4.0.1 - 2025-02-17
+
+### What's Changed
+
+* Display Visibility for Private S3 Storage Images by @naowas in https://github.com/stephenjude/filament-blog/pull/62
+
+### New Contributors
+
+* @naowas made their first contribution in https://github.com/stephenjude/filament-blog/pull/62
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/4.0.0...4.0.1
+
 ## 4.0.0 - 2025-02-17
 
 ### What's Changed
