@@ -2,6 +2,15 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 4.0.0 - 2025-02-17
+
+### What's Changed
+
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/stephenjude/filament-blog/pull/59
+* Laravel 12.x Compatibility by @laravel-shift in https://github.com/stephenjude/filament-blog/pull/60
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/3.0.1...4.0.0
+
 ## 3.0.1 - 2025-01-28
 
 - Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 #58
