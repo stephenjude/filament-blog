@@ -132,6 +132,8 @@ class PostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('banner')
+                    ->disk(config('filament-blog.banner.disk', 'public'))
+                    ->visibility(config('filament-blog.banner.visibility', 'public'))
                     ->label(__('filament-blog::filament-blog.banner'))
                     ->circular(),
                 Tables\Columns\TextColumn::make('title')
