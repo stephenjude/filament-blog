@@ -73,6 +73,7 @@ class PostResource extends Resource
                             ->maxSize(config('filament-blog.banner.maxSize', 5120))
                             ->imageCropAspectRatio(config('filament-blog.banner.cropAspectRatio', '16:9'))
                             ->disk(config('filament-blog.banner.disk', 'public'))
+                            ->visibility(config('filament-blog.banner.visibility', 'public'))
                             ->directory(config('filament-blog.banner.directory', 'blog'))
                             ->columnSpan([
                                 'sm' => 2,
