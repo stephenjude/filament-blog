@@ -44,7 +44,7 @@ class PostResource extends Resource
                         Forms\Components\TextInput::make('title')
                             ->label(__('filament-blog::filament-blog.title'))
                             ->required()
-                            ->live(debounce: 500)
+                            ->live(true)
                             ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
                                 if (($get('slug') ?? '') !== Str::slug($old)) {
                                     return;
