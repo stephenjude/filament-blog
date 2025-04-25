@@ -39,7 +39,7 @@ class CategoryResource extends Resource
                         Forms\Components\TextInput::make('name')
                             ->label(__('filament-blog::filament-blog.name'))
                             ->required()
-                            ->live()
+                            ->live(true)
                             ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
                                 if (($get('slug') ?? '') !== Str::slug($old)) {
                                     return;
