@@ -2,6 +2,18 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 4.0.2 - 2025-04-28
+
+### What's Changed
+
+* Quick Fix for Auto Generated slug problem by @attargah in https://github.com/stephenjude/filament-blog/pull/63
+
+### New Contributors
+
+* @attargah made their first contribution in https://github.com/stephenjude/filament-blog/pull/63
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/4.0.1...4.0.2
+
 ## 4.0.1 - 2025-02-17
 
 ### What's Changed
