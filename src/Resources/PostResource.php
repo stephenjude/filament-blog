@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Stephenjude\FilamentBlog\Models\Author;
 use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
@@ -89,7 +90,8 @@ class PostResource extends Resource
                                     ->required(),
                                 Forms\Components\TextInput::make('email')
                                     ->required()
-                                    ->email(),
+                                    ->email()
+                                    ->unique(Author::class),
                             ])
                             ->searchable()
                             ->required(),
