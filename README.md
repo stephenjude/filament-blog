@@ -2,9 +2,9 @@
 
 # Filament Blog Builder
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/stephenjude/filament-blog.svg?style=flat-square)](https://packagist.org/packages/stephenjude/filament-blog)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/stephenjude/filament-blog/run-tests?label=tests)](https://github.com/stephenjude/filament-blog/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/stephenjude/filament-blog/Check%20&%20fix%20styling?label=code%20style)](https://github.com/stephenjude/filament-blog/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/stephenjude/filament-blog.svg)](https://packagist.org/packages/stephenjude/filament-blog)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/stephenjude/filament-blog/run-tests.yml?branch=main&label=tests)](https://github.com/stephenjude/filament-blog/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/stephenjude/filament-blog/fix-php-code-style-issues.yml?branch-main&label=code%20style)](https://github.com/stephenjude/filament-blog/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/stephenjude/filament-blog.svg?style=flat-square)](https://packagist.org/packages/stephenjude/filament-blog)
 
 A faceless blog content manager with configurable richtext and markdown support for filament admin panel.
