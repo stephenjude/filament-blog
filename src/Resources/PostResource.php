@@ -2,12 +2,15 @@
 
 namespace Stephenjude\FilamentBlog\Resources;
 
+use BackedEnum;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieTagsInput;
-use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,6 +19,7 @@ use Illuminate\Support\Str;
 use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
+use UnitEnum;
 
 use function now;
 
@@ -29,17 +33,69 @@ class PostResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static string | null | UnitEnum $navigationGroup = 'Blog';
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static string | null | BackedEnum $navigationIcon = 'heroicon-o-newspaper';
 
     protected static ?int $navigationSort = 0;
 
-    public static function form(Form $form): Form
+    public static function table(Table $table): Table
     {
-        return $form
+        return $table
+            ->columns([
+                Tables\Columns\ImageColumn::make('banner')
+                    ->disk(config('filament-blog.banner.disk', 'public'))
+                    ->visibility(config('filament-blog.banner.visibility', 'public'))
+                    ->label(__('filament-blog::filament-blog.banner'))
+                    ->circular(),
+                Tables\Columns\TextColumn::make('title')
+                    ->label(__('filament-blog::filament-blog.title'))
+                    ->searchable()
+                    ->wrap()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('author.name')
+                    ->label(__('filament-blog::filament-blog.author_name'))
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label(__('filament-blog::filament-blog.category_name'))
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('published_at')
+                    ->label(__('filament-blog::filament-blog.published_at'))
+                    ->date()
+                    ->sortable(),
+            ])->defaultSort(
+                config('filament-blog.sort.column', 'published_at'),
+                config('filament-blog.sort.direction', 'asc')
+            )
+            ->filters([
+                Tables\Filters\Filter::make('published_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('published_from')
+                            ->placeholder(fn ($state): string => 'Dec 18, ' . now()->subYear()->format('Y')),
+                        Forms\Components\DatePicker::make('published_until')
+                            ->placeholder(fn ($state): string => now()->format('M d, Y')),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['published_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('published_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['published_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
+                            );
+                    }),
+            ]);
+    }
+
+    public static function form(Schema $schema): Schema
+    {
+        return $schema
             ->schema([
-                Forms\Components\Section::make()
+                Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('title')
                             ->label(__('filament-blog::filament-blog.title'))
@@ -109,71 +165,20 @@ class PostResource extends Resource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Forms\Components\Section::make()
+                Section::make()
                     ->schema([
-                        Forms\Components\Placeholder::make('created_at')
+                        TextEntry::make('created_at')
+                            ->default('—')
                             ->label(__('filament-blog::filament-blog.created_at'))
-                            ->content(fn (
-                                ?Post $record
-                            ): string => $record ? $record->created_at->diffForHumans() : '-'),
-                        Forms\Components\Placeholder::make('updated_at')
+                            ->state(fn (?Post $record) => $record?->created_at?->diffForHumans()),
+                        TextEntry::make('updated_at')
+                            ->default('—')
                             ->label(__('filament-blog::filament-blog.last_modified_at'))
-                            ->content(fn (
-                                ?Post $record
-                            ): string => $record ? $record->updated_at->diffForHumans() : '-'),
+                            ->state(fn (?Post $record) => $record?->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(1),
             ])
             ->columns(3);
-    }
-
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\ImageColumn::make('banner')
-                    ->disk(config('filament-blog.banner.disk', 'public'))
-                    ->visibility(config('filament-blog.banner.visibility', 'public'))
-                    ->label(__('filament-blog::filament-blog.banner'))
-                    ->circular(),
-                Tables\Columns\TextColumn::make('title')
-                    ->label(__('filament-blog::filament-blog.title'))
-                    ->searchable()
-                    ->wrap()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('author.name')
-                    ->label(__('filament-blog::filament-blog.author_name'))
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('category.name')
-                    ->label(__('filament-blog::filament-blog.category_name'))
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('published_at')
-                    ->label(__('filament-blog::filament-blog.published_at'))
-                    ->date()
-                    ->sortable(),
-            ])->defaultSort(config('filament-blog.sort.column', 'published_at'), config('filament-blog.sort.direction', 'asc'))
-            ->filters([
-                Tables\Filters\Filter::make('published_at')
-                    ->form([
-                        Forms\Components\DatePicker::make('published_from')
-                            ->placeholder(fn ($state): string => 'Dec 18, ' . now()->subYear()->format('Y')),
-                        Forms\Components\DatePicker::make('published_until')
-                            ->placeholder(fn ($state): string => now()->format('M d, Y')),
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query
-                            ->when(
-                                $data['published_from'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('published_at', '>=', $date),
-                            )
-                            ->when(
-                                $data['published_until'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
-                            );
-                    }),
-            ]);
     }
 
     public static function getRelations(): array

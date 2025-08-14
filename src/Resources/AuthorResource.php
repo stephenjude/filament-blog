@@ -2,14 +2,19 @@
 
 namespace Stephenjude\FilamentBlog\Resources;
 
-use Filament\Forms;
-use Filament\Forms\Form;
+use BackedEnum;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Stephenjude\FilamentBlog\Models\Author;
 use Stephenjude\FilamentBlog\Resources\AuthorResource\Pages;
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
+use UnitEnum;
 
 class AuthorResource extends Resource
 {
@@ -21,27 +26,27 @@ class AuthorResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static string | null | UnitEnum $navigationGroup = 'Blog';
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static string | null | BackedEnum $navigationIcon = 'heroicon-o-users';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 1;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Section::make()
+        return $schema
+            ->components([
+                Section::make()
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        TextInput::make('name')
                             ->label(__('filament-blog::filament-blog.name'))
                             ->required(),
-                        Forms\Components\TextInput::make('email')
+                        TextInput::make('email')
                             ->label(__('filament-blog::filament-blog.email'))
                             ->required()
                             ->email()
                             ->unique(Author::class, 'email', fn ($record) => $record),
-                        Forms\Components\FileUpload::make('photo')
+                        FileUpload::make('photo')
                             ->label(__('filament-blog::filament-blog.photo'))
                             ->image()
                             ->disk(config('filament-blog.avatar.disk', 'public'))
@@ -52,27 +57,25 @@ class AuthorResource extends Resource
                                 'sm' => 2,
                             ]),
                         self::getContentEditor('bio'),
-                        Forms\Components\TextInput::make('github_handle')
+                        TextInput::make('github_handle')
                             ->label(__('filament-blog::filament-blog.github')),
-                        Forms\Components\TextInput::make('twitter_handle')
+                        TextInput::make('twitter_handle')
                             ->label(__('filament-blog::filament-blog.twitter')),
                     ])
                     ->columns([
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Forms\Components\Section::make()
+                Section::make()
                     ->schema([
-                        Forms\Components\Placeholder::make('created_at')
+                        TextEntry::make('created_at')
+                            ->default('—')
                             ->label(__('filament-blog::filament-blog.created_at'))
-                            ->content(fn (
-                                ?Author $record
-                            ): string => $record ? $record->created_at->diffForHumans() : '-'),
-                        Forms\Components\Placeholder::make('updated_at')
+                            ->state(fn (?Author $record) => $record?->created_at?->diffForHumans()),
+                        TextEntry::make('updated_at')
+                            ->default('—')
                             ->label(__('filament-blog::filament-blog.last_modified_at'))
-                            ->content(fn (
-                                ?Author $record
-                            ): string => $record ? $record->updated_at->diffForHumans() : '-'),
+                            ->state(fn (?Author $record) => $record?->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(1),
             ])
