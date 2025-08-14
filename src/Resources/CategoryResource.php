@@ -2,17 +2,21 @@
 
 namespace Stephenjude\FilamentBlog\Resources;
 
+use BackedEnum;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\{Get, Set};
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Stephenjude\FilamentBlog\Models\Category;
 use Stephenjude\FilamentBlog\Resources\CategoryResource\Pages;
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
+use UnitEnum;
 
 class CategoryResource extends Resource
 {
@@ -24,17 +28,17 @@ class CategoryResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string|null|\UnitEnum $navigationGroup = 'Blog';
+    protected static string|null|UnitEnum $navigationGroup = 'Blog';
 
-    protected static string|null|\BackedEnum $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-list-bullet';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
-    public static function form(\Filament\Schemas\Schema $schema): \Filament\Schemas\Schema
+    public static function form(Schema $schema): Schema
     {
         return $schema
             ->schema([
-                Forms\Components\Section::make()
+                Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->label(__('filament-blog::filament-blog.name'))
@@ -60,18 +64,16 @@ class CategoryResource extends Resource
                         'sm' => 2,
                     ])
                     ->columnSpan(2),
-                Forms\Components\Section::make()
+                Section::make()
                     ->schema([
-                        Forms\Components\Placeholder::make('created_at')
+                        TextEntry::make('created_at')
+                            ->default('—')
                             ->label(__('filament-blog::filament-blog.created_at'))
-                            ->content(
-                                fn(?Category $record): string => $record ? $record->created_at->diffForHumans() : '-'
-                            ),
-                        Forms\Components\Placeholder::make('updated_at')
+                            ->state(fn(?Category $record) => $record?->created_at?->diffForHumans()),
+                        TextEntry::make('updated_at')
+                            ->default('—')
                             ->label(__('filament-blog::filament-blog.last_modified_at'))
-                            ->content(
-                                fn(?Category $record): string => $record ? $record->updated_at->diffForHumans() : '-'
-                            ),
+                            ->state(fn(?Category $record) => $record?->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(1),
             ])
