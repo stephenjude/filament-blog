@@ -4,11 +4,11 @@ namespace Stephenjude\FilamentBlog\Resources;
 
 use BackedEnum;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Utilities\{Get, Set};
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -28,9 +28,9 @@ class CategoryResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string|null|UnitEnum $navigationGroup = 'Blog';
+    protected static string | null | UnitEnum $navigationGroup = 'Blog';
 
-    protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-list-bullet';
+    protected static string | null | BackedEnum $navigationIcon = 'heroicon-o-list-bullet';
 
     protected static ?int $navigationSort = 2;
 
@@ -54,7 +54,7 @@ class CategoryResource extends Resource
                         Forms\Components\TextInput::make('slug')
                             ->label(__('filament-blog::filament-blog.slug'))
                             ->required()
-                            ->unique(Category::class, 'slug', fn($record) => $record),
+                            ->unique(Category::class, 'slug', fn ($record) => $record),
                         self::getContentEditor('description'),
                         Forms\Components\Toggle::make('is_visible')
                             ->label(__('filament-blog::filament-blog.visible_to_guests'))
@@ -69,11 +69,11 @@ class CategoryResource extends Resource
                         TextEntry::make('created_at')
                             ->default('—')
                             ->label(__('filament-blog::filament-blog.created_at'))
-                            ->state(fn(?Category $record) => $record?->created_at?->diffForHumans()),
+                            ->state(fn (?Category $record) => $record?->created_at?->diffForHumans()),
                         TextEntry::make('updated_at')
                             ->default('—')
                             ->label(__('filament-blog::filament-blog.last_modified_at'))
-                            ->state(fn(?Category $record) => $record?->updated_at?->diffForHumans()),
+                            ->state(fn (?Category $record) => $record?->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(1),
             ])

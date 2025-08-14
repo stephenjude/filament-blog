@@ -5,7 +5,6 @@ namespace Stephenjude\FilamentBlog\Resources;
 use BackedEnum;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
@@ -27,9 +26,9 @@ class AuthorResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string|null|UnitEnum $navigationGroup = 'Blog';
+    protected static string | null | UnitEnum $navigationGroup = 'Blog';
 
-    protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-users';
+    protected static string | null | BackedEnum $navigationIcon = 'heroicon-o-users';
 
     protected static ?int $navigationSort = 1;
 
@@ -46,7 +45,7 @@ class AuthorResource extends Resource
                             ->label(__('filament-blog::filament-blog.email'))
                             ->required()
                             ->email()
-                            ->unique(Author::class, 'email', fn($record) => $record),
+                            ->unique(Author::class, 'email', fn ($record) => $record),
                         FileUpload::make('photo')
                             ->label(__('filament-blog::filament-blog.photo'))
                             ->image()
@@ -72,11 +71,11 @@ class AuthorResource extends Resource
                         TextEntry::make('created_at')
                             ->default('—')
                             ->label(__('filament-blog::filament-blog.created_at'))
-                            ->state(fn(?Author $record) => $record?->created_at?->diffForHumans()),
+                            ->state(fn (?Author $record) => $record?->created_at?->diffForHumans()),
                         TextEntry::make('updated_at')
                             ->default('—')
                             ->label(__('filament-blog::filament-blog.last_modified_at'))
-                            ->state(fn(?Author $record) => $record?->updated_at?->diffForHumans())
+                            ->state(fn (?Author $record) => $record?->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(1),
             ])

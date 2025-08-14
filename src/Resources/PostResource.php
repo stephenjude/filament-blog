@@ -5,11 +5,11 @@ namespace Stephenjude\FilamentBlog\Resources;
 use BackedEnum;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieTagsInput;
-use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Utilities\{Get, Set};
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -33,9 +33,9 @@ class PostResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static string|null|UnitEnum $navigationGroup = 'Blog';
+    protected static string | null | UnitEnum $navigationGroup = 'Blog';
 
-    protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-newspaper';
+    protected static string | null | BackedEnum $navigationIcon = 'heroicon-o-newspaper';
 
     protected static ?int $navigationSort = 0;
 
@@ -73,19 +73,19 @@ class PostResource extends Resource
                 Tables\Filters\Filter::make('published_at')
                     ->form([
                         Forms\Components\DatePicker::make('published_from')
-                            ->placeholder(fn($state): string => 'Dec 18, '.now()->subYear()->format('Y')),
+                            ->placeholder(fn ($state): string => 'Dec 18, ' . now()->subYear()->format('Y')),
                         Forms\Components\DatePicker::make('published_until')
-                            ->placeholder(fn($state): string => now()->format('M d, Y')),
+                            ->placeholder(fn ($state): string => now()->format('M d, Y')),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
                             ->when(
                                 $data['published_from'],
-                                fn(Builder $query, $date): Builder => $query->whereDate('published_at', '>=', $date),
+                                fn (Builder $query, $date): Builder => $query->whereDate('published_at', '>=', $date),
                             )
                             ->when(
                                 $data['published_until'],
-                                fn(Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
+                                fn (Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
                             );
                     }),
             ]);
@@ -112,7 +112,7 @@ class PostResource extends Resource
                         Forms\Components\TextInput::make('slug')
                             ->label(__('filament-blog::filament-blog.slug'))
                             ->required()
-                            ->unique(Post::class, 'slug', fn($record) => $record),
+                            ->unique(Post::class, 'slug', fn ($record) => $record),
 
                         Forms\Components\Textarea::make('excerpt')
                             ->label(__('filament-blog::filament-blog.excerpt'))
@@ -170,11 +170,11 @@ class PostResource extends Resource
                         TextEntry::make('created_at')
                             ->default('—')
                             ->label(__('filament-blog::filament-blog.created_at'))
-                            ->state(fn(?Post $record) => $record?->created_at?->diffForHumans()),
+                            ->state(fn (?Post $record) => $record?->created_at?->diffForHumans()),
                         TextEntry::make('updated_at')
                             ->default('—')
                             ->label(__('filament-blog::filament-blog.last_modified_at'))
-                            ->state(fn(?Post $record) => $record?->updated_at?->diffForHumans())
+                            ->state(fn (?Post $record) => $record?->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(1),
             ])
