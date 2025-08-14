@@ -2,12 +2,14 @@
 
 namespace Stephenjude\FilamentBlog\Resources;
 
+use BackedEnum;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,6 +18,8 @@ use Illuminate\Support\Str;
 use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
+
+use UnitEnum;
 
 use function now;
 
@@ -29,15 +33,15 @@ class PostResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static string|null|UnitEnum $navigationGroup = 'Blog';
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?int $navigationSort = 0;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Forms\Components\Section::make()
                     ->schema([
@@ -56,7 +60,7 @@ class PostResource extends Resource
                         Forms\Components\TextInput::make('slug')
                             ->label(__('filament-blog::filament-blog.slug'))
                             ->required()
-                            ->unique(Post::class, 'slug', fn ($record) => $record),
+                            ->unique(Post::class, 'slug', fn($record) => $record),
 
                         Forms\Components\Textarea::make('excerpt')
                             ->label(__('filament-blog::filament-blog.excerpt'))
@@ -113,12 +117,12 @@ class PostResource extends Resource
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label(__('filament-blog::filament-blog.created_at'))
-                            ->content(fn (
+                            ->content(fn(
                                 ?Post $record
                             ): string => $record ? $record->created_at->diffForHumans() : '-'),
                         Forms\Components\Placeholder::make('updated_at')
                             ->label(__('filament-blog::filament-blog.last_modified_at'))
-                            ->content(fn (
+                            ->content(fn(
                                 ?Post $record
                             ): string => $record ? $record->updated_at->diffForHumans() : '-'),
                     ])
@@ -153,24 +157,27 @@ class PostResource extends Resource
                     ->label(__('filament-blog::filament-blog.published_at'))
                     ->date()
                     ->sortable(),
-            ])->defaultSort(config('filament-blog.sort.column', 'published_at'), config('filament-blog.sort.direction', 'asc'))
+            ])->defaultSort(
+                config('filament-blog.sort.column', 'published_at'),
+                config('filament-blog.sort.direction', 'asc')
+            )
             ->filters([
                 Tables\Filters\Filter::make('published_at')
                     ->form([
                         Forms\Components\DatePicker::make('published_from')
-                            ->placeholder(fn ($state): string => 'Dec 18, ' . now()->subYear()->format('Y')),
+                            ->placeholder(fn($state): string => 'Dec 18, '.now()->subYear()->format('Y')),
                         Forms\Components\DatePicker::make('published_until')
-                            ->placeholder(fn ($state): string => now()->format('M d, Y')),
+                            ->placeholder(fn($state): string => now()->format('M d, Y')),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
                             ->when(
                                 $data['published_from'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('published_at', '>=', $date),
+                                fn(Builder $query, $date): Builder => $query->whereDate('published_at', '>=', $date),
                             )
                             ->when(
                                 $data['published_until'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
+                                fn(Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
                             );
                     }),
             ]);

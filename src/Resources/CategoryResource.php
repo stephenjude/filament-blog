@@ -24,15 +24,15 @@ class CategoryResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static string|null|\UnitEnum $navigationGroup = 'Blog';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string|null|\BackedEnum $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?int $navigationSort = 1;
 
-    public static function form(Form $form): Form
+    public static function form(\Filament\Schemas\Schema $schema): \Filament\Schemas\Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Forms\Components\Section::make()
                     ->schema([
@@ -50,7 +50,7 @@ class CategoryResource extends Resource
                         Forms\Components\TextInput::make('slug')
                             ->label(__('filament-blog::filament-blog.slug'))
                             ->required()
-                            ->unique(Category::class, 'slug', fn ($record) => $record),
+                            ->unique(Category::class, 'slug', fn($record) => $record),
                         self::getContentEditor('description'),
                         Forms\Components\Toggle::make('is_visible')
                             ->label(__('filament-blog::filament-blog.visible_to_guests'))
@@ -64,10 +64,14 @@ class CategoryResource extends Resource
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label(__('filament-blog::filament-blog.created_at'))
-                            ->content(fn (?Category $record): string => $record ? $record->created_at->diffForHumans() : '-'),
+                            ->content(
+                                fn(?Category $record): string => $record ? $record->created_at->diffForHumans() : '-'
+                            ),
                         Forms\Components\Placeholder::make('updated_at')
                             ->label(__('filament-blog::filament-blog.last_modified_at'))
-                            ->content(fn (?Category $record): string => $record ? $record->updated_at->diffForHumans() : '-'),
+                            ->content(
+                                fn(?Category $record): string => $record ? $record->updated_at->diffForHumans() : '-'
+                            ),
                     ])
                     ->columnSpan(1),
             ])

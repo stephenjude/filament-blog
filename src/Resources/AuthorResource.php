@@ -5,6 +5,7 @@ namespace Stephenjude\FilamentBlog\Resources;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Stephenjude\FilamentBlog\Models\Author;
@@ -21,16 +22,16 @@ class AuthorResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static string|null|\UnitEnum $navigationGroup = 'Blog';
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static string|null|\BackedEnum $navigationIcon = 'heroicon-o-users';
 
     protected static ?int $navigationSort = 2;
 
-    public static function form(Form $form): Form
+    public static function form(\Filament\Schemas\Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('name')
@@ -40,7 +41,7 @@ class AuthorResource extends Resource
                             ->label(__('filament-blog::filament-blog.email'))
                             ->required()
                             ->email()
-                            ->unique(Author::class, 'email', fn ($record) => $record),
+                            ->unique(Author::class, 'email', fn($record) => $record),
                         Forms\Components\FileUpload::make('photo')
                             ->label(__('filament-blog::filament-blog.photo'))
                             ->image()
@@ -65,12 +66,12 @@ class AuthorResource extends Resource
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label(__('filament-blog::filament-blog.created_at'))
-                            ->content(fn (
+                            ->content(fn(
                                 ?Author $record
                             ): string => $record ? $record->created_at->diffForHumans() : '-'),
                         Forms\Components\Placeholder::make('updated_at')
                             ->label(__('filament-blog::filament-blog.last_modified_at'))
-                            ->content(fn (
+                            ->content(fn(
                                 ?Author $record
                             ): string => $record ? $record->updated_at->diffForHumans() : '-'),
                     ])
