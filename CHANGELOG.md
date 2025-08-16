@@ -2,6 +2,14 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 4.1.1 - 2025-08-16
+
+### What's Changed
+
+* Preload Post Categories & Authors by @stephenjude in https://github.com/stephenjude/filament-blog/pull/74
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/4.1.0...4.1.1
+
 ## 4.1.0 - 2025-08-14
 
 ### What's Changed
