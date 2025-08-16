@@ -2,6 +2,20 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 4.1.0 - 2025-08-14
+
+### What's Changed
+
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/stephenjude/filament-blog/pull/70
+* Bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/stephenjude/filament-blog/pull/71
+* Filament v4 Support by @stephenjude in https://github.com/stephenjude/filament-blog/pull/72
+
+### New Contributors
+
+* @stephenjude made their first contribution in https://github.com/stephenjude/filament-blog/pull/72
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/4.0.3...4.1.0
+
 ## 4.0.3 - 2025-06-17
 
 
