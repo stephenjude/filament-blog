@@ -147,6 +147,7 @@ class PostResource extends Resource
                                     ->required()
                                     ->email(),
                             ])
+                            ->preload()
                             ->searchable()
                             ->required(),
 
@@ -154,6 +155,7 @@ class PostResource extends Resource
                             ->label(__('filament-blog::filament-blog.category'))
                             ->relationship(name: 'category', titleAttribute: 'name')
                             ->searchable()
+                            ->preload()
                             ->required(),
 
                         Forms\Components\DatePicker::make('published_at')
