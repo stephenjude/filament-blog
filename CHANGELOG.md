@@ -2,6 +2,18 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 4.1.2 - 2025-08-28
+
+### What's Changed
+
+* Allow instant category adding in PostResource by @cyberkishor in https://github.com/stephenjude/filament-blog/pull/75
+
+### New Contributors
+
+* @cyberkishor made their first contribution in https://github.com/stephenjude/filament-blog/pull/75
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/4.1.1...4.1.2
+
 ## 4.1.1 - 2025-08-16
 
 ### What's Changed
