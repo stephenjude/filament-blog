@@ -20,6 +20,7 @@ use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
 use UnitEnum;
+use Stephenjude\FilamentBlog\Models\Category;
 
 use function now;
 
@@ -156,7 +157,28 @@ class PostResource extends Resource
                             ->relationship(name: 'category', titleAttribute: 'name')
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->required()
+                             ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->label(__('filament-blog::filament-blog.name'))
+                                    ->required()
+                                    ->live(true)
+                                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                                        if (($get('slug') ?? '') !== Str::slug($old)) {
+                                            return;
+                                        }
+
+                                        $set('slug', Str::slug($state));
+                                    }),
+                                Forms\Components\TextInput::make('slug')
+                                    ->label(__('filament-blog::filament-blog.slug'))
+                                    ->required()
+                                    ->unique(Category::class, 'slug', fn($record) => $record),
+                                self::getContentEditor('description'),
+                                Forms\Components\Toggle::make('is_visible')
+                                    ->label(__('filament-blog::filament-blog.visible_to_guests'))
+                                    ->default(true),
+                            ]),
 
                         Forms\Components\DatePicker::make('published_at')
                             ->label(__('filament-blog::filament-blog.published_date')),
