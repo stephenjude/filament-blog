@@ -16,11 +16,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Stephenjude\FilamentBlog\Models\Category;
 use Stephenjude\FilamentBlog\Models\Post;
 use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
 use UnitEnum;
-use Stephenjude\FilamentBlog\Models\Category;
 
 use function now;
 
@@ -158,7 +158,7 @@ class PostResource extends Resource
                             ->searchable()
                             ->preload()
                             ->required()
-                             ->createOptionForm([
+                            ->createOptionForm([
                                 Forms\Components\TextInput::make('name')
                                     ->label(__('filament-blog::filament-blog.name'))
                                     ->required()
@@ -173,7 +173,7 @@ class PostResource extends Resource
                                 Forms\Components\TextInput::make('slug')
                                     ->label(__('filament-blog::filament-blog.slug'))
                                     ->required()
-                                    ->unique(Category::class, 'slug', fn($record) => $record),
+                                    ->unique(Category::class, 'slug', fn ($record) => $record),
                                 self::getContentEditor('description'),
                                 Forms\Components\Toggle::make('is_visible')
                                     ->label(__('filament-blog::filament-blog.visible_to_guests'))
