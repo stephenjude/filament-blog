@@ -69,7 +69,7 @@ class Post extends Model
 
     public function scopePublished(Builder $query)
     {
-        return $query->whereNotNull('published_at');
+        return $query->whereNotNull('published_at')->where('published_at', '<', now());
     }
 
     public function scopeDraft(Builder $query)
