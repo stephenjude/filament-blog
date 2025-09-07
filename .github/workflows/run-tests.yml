@@ -18,6 +18,11 @@ jobs:
         php: [8.3, 8.4]
         laravel: ['11.0', '12.0']
         stability: [prefer-stable]
+        include:
+          - laravel: '11.0'
+            testbench: '^9.0'
+          - laravel: '12.0'
+            testbench: '^10.0'
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
 
