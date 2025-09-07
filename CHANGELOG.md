@@ -2,6 +2,14 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 4.2.0 - 2025-09-07
+
+### What's Changed
+
+* Add Authorization/Access Control for Blog Resources by @stephenjude in https://github.com/stephenjude/filament-blog/pull/78
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/4.1.2...4.2.0
+
 ## 4.1.2 - 2025-08-28
 
 ### What's Changed
