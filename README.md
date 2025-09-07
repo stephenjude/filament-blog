@@ -50,6 +50,16 @@ public function panel(Panel $panel): Panel
 }
 ```
 
+### Authorization/Access Control
+You can authorize the plugin for users with a specific role/permission:
+
+```php
+\Stephenjude\FilamentBlog\BlogPlugin::make()
+    ->authorizePost(fn() => auth()->user()->can('edit.posts'));
+    ->authorizeAuthor(fn() => auth()->user()->can('edit.authors'));
+    ->authorizeCategory(fn() => auth()->user()->can('edit.category'));
+ ```
+
 ## Displaying your content
 
 Filament blog builder is faceless, it doesn't have any opinions on how you display your content in your frontend. You can use the blog models in your controllers to display the different resources:
