@@ -2,6 +2,18 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 4.2.1 - 2025-09-08
+
+### What's Changed
+
+* fix: incorrect use of resource that cause an error Method Filament\Pa… by @kusman28 in https://github.com/stephenjude/filament-blog/pull/79
+
+### New Contributors
+
+* @kusman28 made their first contribution in https://github.com/stephenjude/filament-blog/pull/79
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/4.2.0...4.2.1
+
 ## 4.2.0 - 2025-09-07
 
 ### What's Changed
