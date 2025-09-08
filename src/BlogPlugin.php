@@ -43,13 +43,13 @@ class BlogPlugin implements Plugin
         $panel
             ->when(
                 value: fn () => $this->authorizedPost(),
-                callback: fn (Panel $panel) => $panel->resource(PostResource::class)
+                callback: fn (Panel $panel) => $panel->resources([PostResource::class])
             )->when(
                 value: fn () => $this->authorizedCategory(),
-                callback: fn (Panel $panel) => $panel->resource(CategoryResource::class)
+                callback: fn (Panel $panel) => $panel->resources([CategoryResource::class])
             )->when(
                 value: fn () => $this->authorizedAuthor(),
-                callback: fn (Panel $panel) => $panel->resource(AuthorResource::class)
+                callback: fn (Panel $panel) => $panel->resources([AuthorResource::class])
             );
     }
 
