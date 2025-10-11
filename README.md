@@ -40,12 +40,14 @@ php artisan migrate
 You'll have to register the plugin in your panel provider.
 
 ```php
+use Stephenjude\FilamentBlog\BlogPlugin;
+
 public function panel(Panel $panel): Panel
 {
     return $panel
         ...
         ->plugin(
-            Stephenjude\FilamentBlog\BlogPlugin::make()
+            BlogPlugin::make()
         );
 }
 ```
