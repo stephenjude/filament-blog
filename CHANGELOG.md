@@ -2,6 +2,18 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 4.2.2 - 2025-10-13
+
+### What's Changed
+
+* Update README.md by @ideacatlab in https://github.com/stephenjude/filament-blog/pull/81
+
+### New Contributors
+
+* @ideacatlab made their first contribution in https://github.com/stephenjude/filament-blog/pull/81
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/4.2.1...4.2.2
+
 ## 4.2.1 - 2025-09-08
 
 ### What's Changed
