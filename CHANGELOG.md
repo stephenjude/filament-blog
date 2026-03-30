@@ -2,6 +2,17 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 4.2.3 - 2026-03-30
+
+### What's Changed
+
+* Bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/stephenjude/filament-blog/pull/82
+* Bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/stephenjude/filament-blog/pull/83
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/stephenjude/filament-blog/pull/84
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.0.0 by @dependabot[bot] in https://github.com/stephenjude/filament-blog/pull/85
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/4.2.2...4.2.3
+
 ## 4.2.2 - 2025-10-13
 
 ### What's Changed
