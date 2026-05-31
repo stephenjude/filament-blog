@@ -2,6 +2,15 @@
 
 All notable changes to `filament-blog` will be documented in this file.
 
+## 5.0.0 - 2026-05-31
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 3.0.0 to 3.1.0 by @dependabot[bot] in https://github.com/stephenjude/filament-blog/pull/86
+* Add support for Filament 5 and Laravel 13 by @stephenjude in https://github.com/stephenjude/filament-blog/pull/88
+
+**Full Changelog**: https://github.com/stephenjude/filament-blog/compare/4.2.3...5.0.0
+
 ## 4.2.3 - 2026-03-30
 
 ### What's Changed
