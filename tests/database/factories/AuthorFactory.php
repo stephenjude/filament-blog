@@ -17,7 +17,7 @@ class AuthorFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'bio' => $this->faker->paragraph(),
+            'bio' => '<p>' . $this->faker->paragraph() . '</p>',
             'github_handle' => $this->faker->userName(),
             'twitter_handle' => $this->faker->userName(),
             'created_at' => $this->faker->dateTimeBetween('-1 year', '-6 month'),

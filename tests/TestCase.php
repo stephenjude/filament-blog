@@ -90,6 +90,10 @@ class TestCase extends Orchestra
         if (! Schema::hasTable('blog_categories')) {
             (include __DIR__ . '/../database/migrations/create_filament_blog_tables.php.stub')->up();
         }
+
+        if (! Schema::hasTable('tags')) {
+            (include __DIR__ . '/../vendor/spatie/laravel-tags/database/migrations/create_tag_tables.php.stub')->up();
+        }
     }
 
     protected function defineDatabaseMigrations()
