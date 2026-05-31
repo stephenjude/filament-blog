@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Schema;
 use Livewire\LivewireServiceProvider;
 use Livewire\Mechanisms\DataStore;
 use Orchestra\Testbench\TestCase as Orchestra;
@@ -82,6 +83,13 @@ class TestCase extends Orchestra
         config()->set('app.key', 'base64:' . base64_encode(
             Encrypter::generateKey(config()['app.cipher'])
         ));
+    }
+
+    protected function defineDatabaseMigrationsAfterDatabaseRefreshed(): void
+    {
+        if (! Schema::hasTable('blog_categories')) {
+            (include __DIR__ . '/../database/migrations/create_filament_blog_tables.php.stub')->up();
+        }
     }
 
     protected function defineDatabaseMigrations()
