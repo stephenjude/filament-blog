@@ -1,5 +1,7 @@
 <?php
 
+use Filament\Forms\Components\RichEditor;
+
 return [
 
     /**
@@ -7,7 +9,7 @@ return [
      *      \Filament\Forms\Components\RichEditor::class
      *      \Filament\Forms\Components\MarkdownEditor::class
      */
-    'editor' => \Filament\Forms\Components\RichEditor::class,
+    'editor' => RichEditor::class,
 
     /**
      * Configs for Posts banner file that give you option to change
