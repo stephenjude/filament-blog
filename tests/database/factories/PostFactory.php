@@ -20,8 +20,8 @@ class PostFactory extends Factory
         return [
             'title' => $title = $this->faker->unique()->sentence(4),
             'slug' => Str::slug($title),
-            'content' => $this->faker->realText(),
-            'excerpt' => $this->faker->realTextBetween(50, 1000),
+            'content' => $this->faker->paragraph(),
+            'excerpt' => $this->faker->paragraph(),
             'published_at' => $this->faker->dateTimeBetween('-6 month', '+1 month'),
             'blog_author_id' => Author::factory()->create(),
             'blog_category_id' => Category::factory()->create(),
