@@ -80,6 +80,6 @@ class TestCase extends Orchestra
 
     protected function defineDatabaseMigrations()
     {
-        $this->loadLaravelMigrations();
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 }
