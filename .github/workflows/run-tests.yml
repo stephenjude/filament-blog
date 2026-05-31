@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+      - 4.x
+      - 5.x
   pull_request:
     branches:
       - main
+      - 4.x
+      - 5.x
 
 jobs:
   test:
@@ -16,11 +20,16 @@ jobs:
       fail-fast: false
       matrix:
         php: [8.3, 8.4]
-        laravel: ['12.0']
+        laravel: ['12.0', '13.0']
         stability: [prefer-stable]
+        exclude:
+          - php: 8.3
+            laravel: '13.0'
         include:
           - laravel: '12.0'
             testbench: '^10.0'
+          - laravel: '13.0'
+            testbench: '^11.0'
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
 
@@ -50,4 +59,4 @@ jobs:
         run: composer show -D
 
       - name: Execute tests
-        run: vendor/bin/pest --ci
+        run: vendor/bin/pest --no-coverage

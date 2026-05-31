@@ -9,6 +9,8 @@ use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
 use Filament\Infolists\InfolistsServiceProvider;
 use Filament\Notifications\NotificationsServiceProvider;
+use Filament\Schemas\SchemasServiceProvider;
+use Filament\Support\Livewire\Partials\DataStoreOverride;
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
@@ -16,7 +18,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Schema;
 use Livewire\LivewireServiceProvider;
+use Livewire\Mechanisms\DataStore;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 use Spatie\Tags\TagsServiceProvider;
@@ -32,6 +36,8 @@ class TestCase extends Orchestra
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->app->singleton(DataStore::class, DataStoreOverride::class);
 
         $this->actingAs(User::factory()->create());
 
@@ -53,6 +59,7 @@ class TestCase extends Orchestra
             InfolistsServiceProvider::class,
             LivewireServiceProvider::class,
             NotificationsServiceProvider::class,
+            SchemasServiceProvider::class,
             SupportServiceProvider::class,
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
@@ -78,8 +85,19 @@ class TestCase extends Orchestra
         ));
     }
 
+    protected function defineDatabaseMigrationsAfterDatabaseRefreshed(): void
+    {
+        if (! Schema::hasTable('blog_categories')) {
+            (include __DIR__ . '/../database/migrations/create_filament_blog_tables.php.stub')->up();
+        }
+
+        if (! Schema::hasTable('tags')) {
+            (include __DIR__ . '/../vendor/spatie/laravel-tags/database/migrations/create_tag_tables.php.stub')->up();
+        }
+    }
+
     protected function defineDatabaseMigrations()
     {
-        $this->loadLaravelMigrations();
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 }
